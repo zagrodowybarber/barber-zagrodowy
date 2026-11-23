@@ -1,0 +1,975 @@
+*{box-sizing:border-box} :root{--bg:#3c444b;--card:rgba(139,160,171,.68);--card2:rgba(116,140,153,.76);--dark:rgba(35,40,44,.94);--text:#f5f6f7;--muted:#d5dce0;--accent:#b9d8e6;--accent-dark:#26333b;--line:rgba(255,255,255,.16)}
+html,body{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:#22272c;color:var(--text)}body{display:flex;justify-content:center}.app-shell{width:min(100%,480px);min-height:100dvh;background:linear-gradient(160deg,#3e464d,#5f7884 78%,#526a76);position:relative;overflow:hidden;box-shadow:0 0 40px #0004;padding-bottom:104px}.app-shell:before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(120deg,transparent 0 90px,rgba(255,255,255,.035) 91px 92px,transparent 93px 160px);opacity:.4}
+.topbar{position:relative;z-index:2;display:flex;align-items:center;padding:20px 20px 15px;gap:12px}.brand-mark{height:42px;width:42px;border:1px solid rgba(255,255,255,.7);border-radius:50%;display:grid;place-items:center;font-family:Georgia,serif;font-size:17px;background:rgba(27,31,34,.32)}.brand-name{font-size:14px;font-weight:700;letter-spacing:.04em}.brand-sub{font-size:12px;color:#d4dce0;margin-top:3px}.icon-btn{border:0;color:white;background:rgba(255,255,255,.18);border-radius:50%;height:40px;width:40px;display:grid;place-items:center;font-size:20px}.topbar .icon-btn{margin-left:auto}.screen{position:relative;z-index:1;padding:0 17px}.view{display:none;animation:fadeSlide .32s ease}.view.active{display:block}@keyframes fadeSlide{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}.welcome-card{min-height:255px;position:relative;border-radius:27px;overflow:hidden;background:linear-gradient(115deg,rgba(31,37,40,.9),rgba(70,89,98,.55)),url('assets/salon-1.jfif') center/cover;border:1px solid rgba(255,255,255,.13);box-shadow:0 12px 28px #1b252b30}.welcome-content{position:relative;z-index:1;padding:22px 20px;width:72%}.eyebrow{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#e1e9ed;margin:0 0 10px}.welcome-card h1{font-size:28px;line-height:1.1;margin:0 0 12px;font-family:Georgia,serif;font-weight:500}.muted{color:#e0e6e9;font-size:14px;line-height:1.45}.welcome-photo{position:absolute;right:0;bottom:0;width:44%;height:100%;background:linear-gradient(90deg,transparent,rgba(0,0,0,.15)),url('assets/salon-2.jfif') center/cover;mask-image:linear-gradient(90deg,transparent 0%,black 38%);opacity:.72}.primary-btn{border:0;border-radius:22px;padding:14px 17px;background:linear-gradient(180deg,#d5e8f0,#b2d0df);color:#26343c;font-weight:700;font-size:15px;box-shadow:0 4px 12px #19242a40;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:transform .16s,filter .16s}.primary-btn:active{transform:scale(.97);filter:brightness(.94)}.welcome-content .primary-btn{margin-top:18px;white-space:nowrap}.full{width:100%;margin-top:15px}.secondary-btn{border:1px solid rgba(255,255,255,.3);border-radius:22px;padding:14px;background:rgba(40,48,53,.3);color:white;font-weight:600}.section-head{display:flex;align-items:center;justify-content:space-between;margin:24px 3px 12px}.section-head h2,h2{font-size:18px;margin:0;font-weight:650}.dots{letter-spacing:3px;color:#d5e3e9}.tiles{display:grid;grid-template-columns:1fr 1fr;gap:11px}.tile{border:1px solid rgba(255,255,255,.14);border-radius:23px;background:rgba(129,153,165,.65);color:#fff;text-align:left;padding:15px 14px;min-height:118px;display:flex;flex-direction:column;gap:6px;box-shadow:0 7px 20px #27343a20;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);cursor:pointer}.tile-icon{font-size:25px;color:#e8f2f6;margin-bottom:2px}.tile strong{font-size:14px}.tile small{font-size:12px;color:#e0e7ea}.mini-card{margin-top:15px;border-radius:22px;padding:17px 18px;background:rgba(190,215,225,.7);color:#26343b;display:flex;justify-content:space-between;align-items:center;overflow:hidden}.mini-card h3{font:22px/1.15 Georgia,serif;margin:5px 0}.mini-card .eyebrow{color:#536c78}.mini-icon{font-size:42px;color:#536e7a}
+.page-title{padding:8px 3px 20px}.page-title h1{font:32px/1.1 Georgia,serif;margin:0 0 8px}.page-title p{margin:0}.steps{display:flex;align-items:center;justify-content:center;margin:7px 0 26px}.step{height:33px;width:33px;border-radius:50%;background:rgba(43,50,55,.55);display:grid;place-items:center;font-weight:700;position:relative;color:#f4f6f7}.step.active{background:#d6e7ee;color:#2b3940}.step small{position:absolute;top:39px;white-space:nowrap;font-size:10px;font-weight:500;color:#e3e8eb}.steps i{height:2px;background:rgba(255,255,255,.25);width:48px}.service-list{display:flex;flex-direction:column;gap:9px;margin:13px 0 15px}.service-row{display:flex;align-items:center;gap:12px;padding:11px 13px;border:1px solid rgba(255,255,255,.14);border-radius:20px;background:rgba(120,146,158,.64);cursor:pointer}.service-row.selected{background:rgba(181,211,225,.88);color:#28363d}.service-icon{height:50px;width:50px;border-radius:16px;background:rgba(39,47,52,.35);display:grid;place-items:center;font-size:22px;flex-shrink:0}.service-info{flex:1}.service-info strong{display:block;font-size:14px}.service-info small{display:block;margin-top:4px;color:inherit;opacity:.85}.check{height:23px;width:23px;border:1.5px solid rgba(255,255,255,.65);border-radius:7px;display:grid;place-items:center}.selected .check{background:#30414a;border-color:#30414a;color:white}.booking-summary{display:flex;justify-content:space-between;gap:12px;padding:14px 4px;color:#eef3f5;font-size:12px}.booking-summary strong{font-size:13px;white-space:nowrap}.calendar-card,.summary-card,.text-card{border-radius:24px;background:rgba(124,148,160,.7);border:1px solid rgba(255,255,255,.15);padding:17px;margin-bottom:17px;backdrop-filter:blur(15px)}.month-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.month-row strong{font-family:Georgia,serif;font-size:19px}.weekdays,.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;text-align:center}.weekdays{font-size:12px;color:#e0e7ea;margin-bottom:7px}.calendar-grid button{height:37px;border:0;border-radius:12px;background:rgba(255,255,255,.12);color:white}.calendar-grid button.available{background:#b8d8e5;color:#26343c;font-weight:700}.calendar-grid button.selected{background:#26343c;color:#fff;box-shadow:0 0 0 2px #c7e0eb}.calendar-grid button:disabled{opacity:.25}.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:12px 0 18px}.slot{border:1px solid rgba(255,255,255,.2);background:rgba(120,146,158,.6);border-radius:15px;padding:12px;color:white}.slot.selected{background:#d5e7ef;color:#27363e;font-weight:700}.slot:disabled{opacity:.3}.summary-card h2{margin-bottom:10px}.summary-card p{margin:7px 0;color:#eef3f5}.price-list{display:flex;flex-direction:column;gap:9px;margin-bottom:17px}.price-row{display:flex;justify-content:space-between;align-items:center;padding:16px;border-radius:20px;background:rgba(125,149,161,.65);border:1px solid rgba(255,255,255,.13)}.price-row span{font-size:14px}.price-row strong{font-size:16px}.photo-stack img,.wide-photo{width:100%;border-radius:24px;object-fit:cover;display:block}.photo-stack img{max-height:380px}.wide-photo{margin:15px 0;max-height:300px}.text-card h2{margin-bottom:10px}.text-card p{font-size:14px;line-height:1.6;color:#e5ebee;margin:0}.gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.gallery-grid img{width:100%;height:230px;object-fit:cover;border-radius:22px;border:1px solid rgba(255,255,255,.15)}.contact-card,.profile-card{display:flex;align-items:center;gap:13px;background:rgba(125,149,161,.68);border:1px solid rgba(255,255,255,.15);border-radius:22px;padding:16px;margin:10px 0}.contact-icon,.avatar{height:45px;width:45px;border-radius:50%;background:rgba(41,49,54,.45);display:grid;place-items:center;font-size:22px}.contact-card small,.profile-card small{display:block;color:#e1e7ea;margin-top:4px}.profile-card strong{display:block}
+.bottom-nav{position:fixed;z-index:10;bottom:max(12px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(calc(100% - 26px),454px);height:72px;border-radius:27px;background:rgba(31,36,40,.86);border:1px solid rgba(255,255,255,.16);box-shadow:0 10px 30px #1c252b55;display:flex;justify-content:space-around;align-items:center;backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4)}.nav-item{border:0;background:transparent;color:#e4e9ec;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:20%;height:60px;border-radius:20px;cursor:pointer}.nav-item span{font-size:22px;line-height:1}.nav-item small{font-size:10px}.nav-item.active{background:#e3edf2;color:#27343b;box-shadow:0 3px 12px #0003}.nav-item.active span{font-size:23px}
+@media(min-width:700px){body{padding:25px}.app-shell{border-radius:32px;min-height:850px}.bottom-nav{position:absolute;bottom:20px}.screen{padding:0 22px}.topbar{padding:24px 22px 17px}}
+
+/* Refined iPhone-inspired finish: soft depth, warm metal accents, and layered glass. */
+:root{
+  --bg:#101513;
+  --card:rgba(39,48,44,.88);
+  --card2:rgba(49,60,54,.92);
+  --dark:rgba(13,17,15,.96);
+  --text:#f7f4ee;
+  --muted:#c6c8c1;
+  --accent:#d7b879;
+  --accent-dark:#272218;
+  --line:rgba(255,255,255,.11);
+}
+html,body{background:#090c0b;color:var(--text)}
+body{background:radial-gradient(ellipse at 50% 12%,#27342e 0,#101412 42%,#090c0b 78%)}
+.app-shell{
+  background:radial-gradient(ellipse at 90% 5%,rgba(190,153,91,.13),transparent 27%),linear-gradient(160deg,#171d19 0%,#202923 54%,#121714 100%);
+  box-shadow:0 28px 90px #0009,0 0 0 1px rgba(255,255,255,.07),inset 0 1px rgba(255,255,255,.06);
+}
+.app-shell:before{background:radial-gradient(ellipse at 12% 35%,rgba(255,255,255,.035),transparent 40%),repeating-linear-gradient(120deg,transparent 0 110px,rgba(255,255,255,.018) 111px 112px,transparent 113px 190px);opacity:.7}
+.topbar{padding-top:max(20px,env(safe-area-inset-top));padding-bottom:18px}
+.brand-mark{border-color:rgba(215,184,121,.65);color:#e4cc9d;background:linear-gradient(145deg,rgba(215,184,121,.16),rgba(255,255,255,.025));box-shadow:0 5px 18px #0004,inset 0 1px rgba(255,255,255,.18)}
+.brand-name{letter-spacing:.11em;font-size:12px}
+.brand-sub{color:#b7b9b1;letter-spacing:.02em}
+.icon-btn{border:1px solid rgba(255,255,255,.09);background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.045));box-shadow:0 5px 14px #0003,inset 0 1px rgba(255,255,255,.12)}
+.welcome-card{
+  min-height:292px;border-radius:30px;
+  background:linear-gradient(100deg,rgba(9,13,11,.94) 2%,rgba(13,18,15,.78) 50%,rgba(17,22,19,.12) 100%),url('assets/salon-1.jfif') center/cover;
+  border:1px solid rgba(255,255,255,.13);
+  box-shadow:0 22px 42px #0006,0 5px 12px #0003,inset 0 1px rgba(255,255,255,.16);
+}
+.welcome-card:after{content:"";position:absolute;inset:1px;border-radius:29px;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.12),transparent 32%,transparent 70%,rgba(215,184,121,.11))}
+.welcome-content{padding:26px 22px;width:78%}
+.eyebrow{color:#d7b879;letter-spacing:.12em;font-size:10px;font-weight:700}
+.welcome-card h1,.page-title h1{font-family:ui-serif,Georgia,serif;letter-spacing:-.035em;text-shadow:0 3px 20px #0008}
+.welcome-card h1{font-size:32px;line-height:1.04}
+.muted{color:#c6c8c1}
+.welcome-photo{width:48%;opacity:.82;filter:saturate(.72) contrast(1.08);mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.6) 30%,black 65%)}
+.primary-btn{
+  position:relative;overflow:hidden;border-radius:18px;padding:15px 18px;
+  background:linear-gradient(155deg,#eed9a6 0%,#d6b879 58%,#b89555 100%);
+  color:#211d15;box-shadow:0 10px 22px rgba(0,0,0,.3),inset 0 1px rgba(255,255,255,.72),inset 0 -1px rgba(101,72,27,.25);
+  letter-spacing:.01em;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;
+}
+.primary-btn:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.27) 48%,transparent 72%);transform:translateX(-110%);transition:transform .55s ease}
+.primary-btn:hover:before{transform:translateX(110%)}
+.primary-btn:hover{box-shadow:0 13px 27px rgba(0,0,0,.4),inset 0 1px rgba(255,255,255,.8)}
+.primary-btn:disabled{filter:grayscale(.55);opacity:.5;box-shadow:none}
+.primary-btn:focus-visible,.secondary-btn:focus-visible,.tile:focus-visible,.nav-item:focus-visible,.service-row:focus-visible,.slot:focus-visible,.calendar-grid button:focus-visible{outline:2px solid #eed9a6;outline-offset:3px}
+.secondary-btn{border-color:rgba(255,255,255,.15);background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.035));box-shadow:0 7px 18px #0003,inset 0 1px rgba(255,255,255,.09)}
+.section-head{margin:27px 4px 13px}
+.section-head h2,h2{color:#f1eee7;letter-spacing:-.02em}
+.dots{color:#d7b879}
+.tile{
+  position:relative;overflow:hidden;min-height:126px;padding:16px 15px;border-radius:24px;
+  border:1px solid rgba(255,255,255,.1);background:linear-gradient(145deg,rgba(58,69,61,.88),rgba(31,39,34,.94));
+  box-shadow:0 12px 25px #0003,inset 0 1px rgba(255,255,255,.1);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+.tile:after{content:"";position:absolute;width:100px;height:100px;right:-48px;top:-53px;border-radius:50%;background:rgba(215,184,121,.08);filter:blur(2px)}
+.tile:hover{transform:translateY(-3px);border-color:rgba(215,184,121,.34);box-shadow:0 18px 30px #0004,inset 0 1px rgba(255,255,255,.12)}
+.tile-icon{color:#d7b879;text-shadow:0 3px 12px #d7b87933}
+.tile strong{font-size:14px;letter-spacing:.005em}
+.tile small{color:#bfc2ba}
+.mini-card{
+  position:relative;margin-top:17px;border:1px solid rgba(215,184,121,.2);border-radius:24px;
+  background:radial-gradient(ellipse at 100% 0%,rgba(215,184,121,.2),transparent 50%),linear-gradient(130deg,#e8d5aa,#cdb47e 70%,#b99d66);
+  box-shadow:0 14px 28px #0004,inset 0 1px rgba(255,255,255,.65);color:#28251e;
+}
+.mini-card .eyebrow{color:#625334}
+.mini-card h3{font-size:23px;letter-spacing:-.025em}
+.mini-icon{color:#705d37;text-shadow:0 5px 13px #735e3433}
+.page-title{padding:11px 3px 21px}
+.page-title h1{font-size:34px}
+.steps{margin-bottom:29px}
+.step{background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(255,255,255,.055));border:1px solid rgba(255,255,255,.11);box-shadow:0 4px 10px #0002}
+.step.active{background:linear-gradient(145deg,#f0dfba,#d7b879);color:#29251d;box-shadow:0 6px 15px #0004,inset 0 1px #fff9}
+.steps i{background:linear-gradient(90deg,rgba(215,184,121,.65),rgba(255,255,255,.13))}
+.service-row,.calendar-card,.summary-card,.text-card,.price-row,.contact-card,.profile-card{
+  border:1px solid rgba(255,255,255,.1);background:linear-gradient(145deg,rgba(57,68,60,.91),rgba(34,42,37,.96));
+  box-shadow:0 10px 24px #0003,inset 0 1px rgba(255,255,255,.08);
+}
+.service-row{padding:12px 13px;border-radius:22px;transition:transform .18s ease,border-color .18s ease,background .18s ease}
+.service-row:hover{transform:translateY(-2px);border-color:rgba(215,184,121,.3)}
+.service-row.selected{background:linear-gradient(145deg,#e8d5aa,#cdb47e);color:#28251e;border-color:#f1dfb6;box-shadow:0 10px 22px #0004,inset 0 1px #fff9}
+.service-row.selected .service-icon{background:rgba(55,43,22,.11)}
+.service-row.selected .check{background:#3b3323;border-color:#3b3323}
+.booking-summary{padding:16px 4px;color:#d5d5ce}
+.calendar-card{background:linear-gradient(145deg,rgba(51,62,54,.96),rgba(27,34,30,.98))}
+.month-row strong{color:#f2dfb7}
+.calendar-grid button{background:rgba(255,255,255,.07);transition:transform .15s ease,background .15s ease}
+.calendar-grid button.available{background:rgba(215,184,121,.22);color:#f2dfb7;border:1px solid rgba(215,184,121,.22)}
+.calendar-grid button.available:hover{transform:translateY(-2px);background:rgba(215,184,121,.34)}
+.calendar-grid button.selected{background:#d7b879;color:#211d15;box-shadow:0 5px 14px #0004,inset 0 1px #fff8}
+.slot{border-color:rgba(255,255,255,.12);background:linear-gradient(145deg,rgba(61,73,64,.9),rgba(37,46,40,.95));box-shadow:0 5px 12px #0002;transition:transform .15s ease,border-color .15s ease}
+.slot:hover{transform:translateY(-2px);border-color:rgba(215,184,121,.45)}
+.slot.selected{background:linear-gradient(145deg,#eddcb5,#d7b879);color:#211d15;box-shadow:0 7px 16px #0004,inset 0 1px #fff9}
+.summary-card p,.text-card p{color:#d0d1ca}
+.price-row{border-radius:20px}
+.price-row strong{color:#ead6a7}
+.photo-stack img,.wide-photo,.gallery-grid img{box-shadow:0 14px 30px #0005;border:1px solid rgba(255,255,255,.1)}
+.gallery-grid img{transition:transform .2s ease,box-shadow .2s ease}
+.gallery-grid img:hover{transform:scale(1.015);box-shadow:0 20px 34px #0007}
+.contact-icon,.avatar{background:linear-gradient(145deg,rgba(215,184,121,.25),rgba(215,184,121,.08));color:#e6ce9b;box-shadow:inset 0 1px rgba(255,255,255,.12)}
+.contact-card small,.profile-card small{color:#c2c4bc}
+.bottom-nav{
+  padding-bottom:env(safe-area-inset-bottom);height:76px;
+  background:linear-gradient(145deg,rgba(29,35,31,.91),rgba(14,18,16,.95));
+  border-color:rgba(255,255,255,.12);box-shadow:0 18px 42px #0008,inset 0 1px rgba(255,255,255,.1);
+}
+.nav-item{color:#c5c8c0;transition:background .18s ease,color .18s ease,transform .18s ease}
+.nav-item:active{transform:scale(.94)}
+.nav-item.active{background:linear-gradient(145deg,#f0dfba,#d7b879);color:#28241b;box-shadow:0 5px 16px #0005,inset 0 1px #fff9}
+.nav-item small{font-weight:600;letter-spacing:.01em}
+@media(max-width:380px){.screen{padding:0 14px}.welcome-content{padding:23px 17px;width:82%}.welcome-card h1{font-size:29px}.tile{padding:14px 12px}.bottom-nav{width:calc(100% - 20px)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* Strong glossy glass treatment: obsidian surfaces, visible reflections and luminous edges. */
+:root{--text:#f7f8f7;--muted:#aeb9b5;--accent:#f3bd59;--accent-dark:#16120c;--line:rgba(239,248,245,.22)}
+html,body{background:#050708}
+body{background:radial-gradient(ellipse at 50% 10%,#273a35 0,#0b1110 38%,#050708 78%)}
+.app-shell{
+  background:radial-gradient(ellipse at 80% 3%,rgba(242,178,77,.17),transparent 24%),radial-gradient(ellipse at 4% 50%,rgba(42,133,120,.16),transparent 38%),linear-gradient(160deg,#111817 0%,#0a100f 55%,#070a09 100%);
+  box-shadow:0 30px 100px #000d,0 0 0 1px rgba(245,255,251,.12),inset 0 1px 0 rgba(255,255,255,.16);
+}
+.app-shell:before{background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.075),transparent 35%),repeating-linear-gradient(135deg,transparent 0 125px,rgba(215,245,234,.018) 126px 127px,transparent 128px 205px);opacity:.95}
+.topbar{padding-left:22px;padding-right:22px}
+.brand-mark{border-color:rgba(243,189,89,.78);color:#ffe4ab;background:linear-gradient(145deg,rgba(255,224,161,.2),rgba(255,255,255,.025) 58%,rgba(0,0,0,.36));box-shadow:0 0 22px rgba(243,189,89,.13),0 8px 18px #0009,inset 0 1px 1px #fff9,inset 0 -8px 16px #0005}
+.brand-name{color:#f7f8f7;text-shadow:0 1px 10px #fff3}
+.brand-sub{color:#aeb9b5}
+.icon-btn{border:1px solid rgba(245,255,251,.22);background:linear-gradient(145deg,rgba(255,255,255,.24),rgba(255,255,255,.055) 45%,rgba(0,0,0,.18));box-shadow:0 8px 20px #0008,inset 0 1px 1px #fff8,inset 0 -6px 12px #0004}
+.welcome-card{
+  min-height:310px;border-radius:30px;
+  background:linear-gradient(90deg,rgba(5,9,8,.96) 0%,rgba(7,12,10,.78) 49%,rgba(8,12,11,.17) 100%),url('assets/salon-1.jfif') center/cover;
+  border:1px solid rgba(245,255,251,.27);
+  box-shadow:0 25px 50px #000b,0 0 28px rgba(104,210,177,.09),inset 0 1px 1px rgba(255,255,255,.48),inset 0 -26px 50px rgba(0,0,0,.48);
+}
+.welcome-card:after{inset:1px;border-radius:29px;background:linear-gradient(150deg,rgba(255,255,255,.3) 0%,rgba(255,255,255,.1) 7%,transparent 25%,transparent 68%,rgba(243,189,89,.16) 100%),radial-gradient(ellipse at 86% 4%,rgba(255,255,255,.24),transparent 34%);box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.welcome-content{z-index:3;padding:28px 23px;width:81%}
+.welcome-card h1{color:#fff;font-size:34px;text-shadow:0 4px 24px #000,0 1px 3px #000}
+.welcome-card .muted{color:#d6ddd9;text-shadow:0 2px 10px #000}
+.welcome-photo{width:53%;opacity:.9;filter:saturate(.8) contrast(1.18) brightness(.77);mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.65) 28%,black 60%)}
+.eyebrow{color:#f3bd59;text-shadow:0 0 16px rgba(243,189,89,.34)}
+.primary-btn{
+  border:1px solid rgba(255,231,180,.7);border-radius:17px;
+  background:linear-gradient(180deg,#ffe6a8 0%,#f3bd59 38%,#c88420 100%);
+  color:#251805;box-shadow:0 13px 28px rgba(0,0,0,.55),0 0 22px rgba(243,189,89,.19),inset 0 1px 1px #fff,inset 0 -2px 3px rgba(98,54,0,.45);
+  text-shadow:0 1px rgba(255,255,255,.35);
+}
+.primary-btn:before{background:linear-gradient(110deg,transparent 12%,rgba(255,255,255,.03) 32%,rgba(255,255,255,.72) 48%,rgba(255,255,255,.08) 58%,transparent 76%);animation:gloss-pass 5.5s ease-in-out infinite}
+@keyframes gloss-pass{0%,65%{transform:translateX(-130%)}86%,100%{transform:translateX(130%)}}
+.primary-btn:hover{filter:brightness(1.12);box-shadow:0 17px 34px #0009,0 0 28px rgba(243,189,89,.34),inset 0 1px #fff}
+.secondary-btn{color:#f3f6f4;border:1px solid rgba(245,255,251,.27);background:linear-gradient(145deg,rgba(255,255,255,.21),rgba(255,255,255,.055) 44%,rgba(0,0,0,.22));box-shadow:0 10px 24px #0008,inset 0 1px 1px #fff9,inset 0 -8px 16px #0004;backdrop-filter:blur(22px) saturate(1.5)}
+.section-head h2,h2{color:#f5f8f6;text-shadow:0 2px 14px #0008}
+.dots{color:#f3bd59;text-shadow:0 0 14px #f3bd5966}
+.tile{
+  background:linear-gradient(145deg,rgba(207,233,223,.2),rgba(113,145,134,.1) 20%,rgba(25,39,34,.62) 56%,rgba(7,13,11,.78));
+  border:1px solid rgba(233,255,246,.25);backdrop-filter:blur(25px) saturate(1.6);-webkit-backdrop-filter:blur(25px) saturate(1.6);
+  box-shadow:0 16px 32px #0008,0 1px 0 rgba(255,255,255,.2) inset,0 -1px 0 rgba(0,0,0,.55) inset,1px 0 0 rgba(255,255,255,.08) inset;
+}
+.tile:before{content:"";position:absolute;inset:1px;border-radius:22px;pointer-events:none;background:linear-gradient(165deg,rgba(255,255,255,.2),rgba(255,255,255,.06) 12%,transparent 37%);opacity:.9}
+.tile:after{width:130px;height:130px;right:-62px;top:-77px;background:rgba(103,221,188,.17);filter:blur(18px)}
+.tile:hover{transform:translateY(-4px) scale(1.015);border-color:rgba(181,255,226,.5);box-shadow:0 22px 42px #000b,0 0 22px rgba(101,231,185,.12),inset 0 1px #ffffff66}
+.tile-icon{color:#f3c76f;text-shadow:0 0 15px rgba(243,189,89,.45),0 2px 8px #000}
+.tile strong{color:#f4f8f5;text-shadow:0 2px 8px #0009}
+.tile small{color:#bdcbc4}
+.mini-card{
+  border:1px solid rgba(220,248,236,.27);color:#f2f7f4;
+  background:linear-gradient(145deg,rgba(224,245,236,.2),rgba(97,133,119,.14) 18%,rgba(27,43,36,.65) 55%,rgba(10,17,14,.86));
+  backdrop-filter:blur(24px) saturate(1.7);-webkit-backdrop-filter:blur(24px) saturate(1.7);
+  box-shadow:0 18px 38px #0009,inset 0 1px 1px rgba(255,255,255,.52),inset 0 -12px 24px rgba(0,0,0,.38);
+}
+.mini-card:after{content:"";position:absolute;inset:1px;border-radius:23px;pointer-events:none;background:linear-gradient(155deg,rgba(255,255,255,.24),rgba(255,255,255,.04) 15%,transparent 45%)}
+.mini-card .eyebrow{color:#f3bd59}
+.mini-card h3{position:relative;z-index:1;color:#fff;text-shadow:0 2px 12px #0009}
+.mini-icon{position:relative;z-index:1;color:#f3bd59;text-shadow:0 0 18px rgba(243,189,89,.7),0 4px 12px #0008}
+.service-row,.calendar-card,.summary-card,.text-card,.price-row,.contact-card,.profile-card{
+  border:1px solid rgba(232,255,246,.2);
+  background:linear-gradient(145deg,rgba(212,240,228,.18),rgba(111,143,129,.1) 18%,rgba(25,39,33,.68) 52%,rgba(9,15,12,.88));
+  backdrop-filter:blur(24px) saturate(1.55);-webkit-backdrop-filter:blur(24px) saturate(1.55);
+  box-shadow:0 15px 32px #0008,inset 0 1px 1px rgba(255,255,255,.38),inset 0 -10px 18px rgba(0,0,0,.33);
+}
+.service-row.selected{color:#fff;border-color:rgba(255,216,143,.78);background:linear-gradient(145deg,rgba(255,245,219,.26),rgba(243,189,89,.23) 35%,rgba(93,60,17,.63));box-shadow:0 13px 26px #0008,0 0 22px rgba(243,189,89,.18),inset 0 1px 1px #fff9,inset 0 -8px 15px #0005}
+.service-row.selected .service-icon{background:linear-gradient(145deg,rgba(255,255,255,.27),rgba(0,0,0,.25));box-shadow:inset 0 1px #fff8,0 5px 12px #0005}
+.service-row.selected .check{background:linear-gradient(180deg,#ffe6a8,#d28d27);border-color:#ffe6a8;color:#261b08;box-shadow:0 0 13px #f3bd5966}
+.calendar-card{background:linear-gradient(145deg,rgba(212,240,228,.19),rgba(111,143,129,.1) 18%,rgba(21,34,29,.78) 52%,rgba(8,13,11,.92))}
+.calendar-grid button{border:1px solid rgba(255,255,255,.12);background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.035));box-shadow:0 4px 9px #0003,inset 0 1px #ffffff24}
+.calendar-grid button.available{color:#fff3d5;border-color:rgba(243,189,89,.4);background:linear-gradient(145deg,rgba(255,233,183,.2),rgba(174,115,31,.18));box-shadow:0 5px 12px #0004,inset 0 1px #fff5}
+.calendar-grid button.selected,.slot.selected{color:#251805;background:linear-gradient(180deg,#ffe6a8,#f3bd59 45%,#c88420);border:1px solid #ffe6a8;box-shadow:0 8px 18px #0007,0 0 18px #f3bd5955,inset 0 1px #fff}
+.slot{border:1px solid rgba(233,255,246,.2);background:linear-gradient(145deg,rgba(215,242,230,.18),rgba(28,44,37,.75));backdrop-filter:blur(16px);box-shadow:0 8px 18px #0005,inset 0 1px #fff4}
+.slot:hover{border-color:rgba(243,189,89,.6);box-shadow:0 12px 22px #0007,0 0 16px #f3bd5922,inset 0 1px #fff6}
+.price-row strong{color:#ffd987;text-shadow:0 0 12px #f3bd5933}
+.contact-icon,.avatar{border:1px solid rgba(243,189,89,.37);background:linear-gradient(145deg,rgba(255,229,171,.23),rgba(178,117,34,.09));color:#ffd987;box-shadow:0 6px 15px #0005,inset 0 1px #fff7}
+.photo-stack img,.wide-photo,.gallery-grid img{box-shadow:0 20px 42px #000a,0 0 0 1px rgba(255,255,255,.15),inset 0 1px #fff8}
+.bottom-nav{
+  border:1px solid rgba(237,255,247,.28);
+  background:linear-gradient(145deg,rgba(213,241,228,.19),rgba(73,95,85,.15) 18%,rgba(19,28,24,.78) 54%,rgba(5,9,7,.9));
+  backdrop-filter:blur(32px) saturate(1.8);-webkit-backdrop-filter:blur(32px) saturate(1.8);
+  box-shadow:0 20px 46px #000b,inset 0 1px 1px rgba(255,255,255,.47),inset 0 -8px 18px #0007;
+}
+.nav-item{color:#d2ded7}
+.nav-item.active{color:#fff2d3;background:linear-gradient(145deg,rgba(255,241,207,.28),rgba(243,189,89,.19) 48%,rgba(118,77,20,.22));border:1px solid rgba(255,224,161,.42);box-shadow:0 5px 16px #0007,0 0 18px rgba(243,189,89,.12),inset 0 1px 1px #fff9}
+.nav-item.active span{text-shadow:0 0 13px rgba(255,212,125,.68)}
+
+/* Bright, playful iOS Liquid Glass direction based on the supplied reference. */
+:root{--text:#f8fdff;--muted:#e0f3fb;--accent:#8ff6ff;--accent-dark:#123b72;--line:rgba(255,255,255,.32)}
+html,body{background:#178cae;color:#f8fdff}
+body{background:radial-gradient(ellipse at 50% 4%,#8aeaff 0,#31bdd4 28%,#287dcc 57%,#173c91 100%)}
+.app-shell{
+  background:radial-gradient(ellipse at 5% 4%,rgba(171,255,246,.76),transparent 31%),radial-gradient(ellipse at 96% 35%,rgba(115,177,255,.78),transparent 33%),radial-gradient(ellipse at 50% 100%,rgba(34,46,156,.88),transparent 52%),linear-gradient(160deg,#44c8da 0%,#258fca 38%,#2864b7 72%,#253b8d 100%);
+  box-shadow:0 30px 95px rgba(14,41,108,.55),0 0 0 1px rgba(255,255,255,.42),inset 0 1px 0 rgba(255,255,255,.7);
+}
+.app-shell:before{background:radial-gradient(ellipse at 18% 12%,rgba(255,255,255,.4),transparent 27%),radial-gradient(ellipse at 82% 66%,rgba(140,240,255,.23),transparent 31%),repeating-linear-gradient(135deg,transparent 0 145px,rgba(255,255,255,.055) 146px 147px,transparent 148px 225px);opacity:.86}
+.topbar{padding-bottom:19px}
+.brand-mark{border:1px solid rgba(255,255,255,.68);color:white;background:linear-gradient(145deg,rgba(255,255,255,.52),rgba(159,232,255,.2) 44%,rgba(39,89,177,.34));box-shadow:0 8px 18px rgba(22,66,133,.24),inset 0 1.5px 1px rgba(255,255,255,.93),inset 0 -7px 12px rgba(33,80,151,.2)}
+.brand-name{color:#fff;text-shadow:0 2px 12px rgba(20,73,134,.38);letter-spacing:.08em}
+.brand-sub{color:rgba(248,253,255,.88);text-shadow:0 1px 8px rgba(20,73,134,.28)}
+.icon-btn{border:1px solid rgba(255,255,255,.53);color:#fff;background:linear-gradient(145deg,rgba(255,255,255,.48),rgba(185,236,255,.2) 48%,rgba(55,112,207,.32));box-shadow:0 8px 20px rgba(22,66,133,.24),inset 0 1px 1px #fff,inset 0 -7px 13px rgba(22,78,153,.2)}
+.welcome-card{
+  min-height:300px;border:1px solid rgba(255,255,255,.62);border-radius:30px;
+  background:linear-gradient(100deg,rgba(15,43,86,.8) 0%,rgba(23,73,118,.58) 48%,rgba(32,109,166,.12) 100%),url('assets/salon-1.jfif') center/cover;
+  box-shadow:0 21px 40px rgba(14,44,113,.38),0 0 28px rgba(184,250,255,.3),inset 0 1.5px 1px rgba(255,255,255,.9),inset 0 -22px 36px rgba(14,52,115,.24);
+}
+.welcome-card:after{inset:1px;border-radius:29px;background:linear-gradient(150deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,.16) 9%,transparent 27%,transparent 67%,rgba(159,228,255,.26) 100%),radial-gradient(ellipse at 88% 2%,rgba(255,255,255,.52),transparent 32%);box-shadow:inset 0 1px 0 rgba(255,255,255,.65)}
+.welcome-content{width:82%}
+.welcome-card h1,.page-title h1{font-family:system-ui,-apple-system,sans-serif;letter-spacing:-.035em;font-weight:760}
+.welcome-card h1{color:#fff;font-size:32px;text-shadow:0 3px 16px rgba(8,35,76,.6)}
+.welcome-card .muted{color:#eafaff;text-shadow:0 2px 9px rgba(8,35,76,.6)}
+.welcome-photo{filter:saturate(.82) contrast(1.08) brightness(.85);opacity:.88;mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.6) 28%,black 61%)}
+.eyebrow{color:#c8fbff;text-shadow:0 1px 12px rgba(9,68,126,.42);letter-spacing:.1em}
+.primary-btn{
+  border:1px solid rgba(255,255,255,.76);border-radius:19px;
+  background:linear-gradient(180deg,rgba(255,255,255,.86) 0%,rgba(174,248,255,.88) 12%,rgba(86,213,244,.92) 47%,rgba(51,139,223,.96) 100%);
+  color:#113e70;text-shadow:0 1px rgba(255,255,255,.5);
+  box-shadow:0 12px 26px rgba(8,48,119,.34),0 0 20px rgba(165,248,255,.42),inset 0 1.5px 1px #fff,inset 0 -2px 4px rgba(17,66,143,.35);
+}
+.primary-btn:before{background:linear-gradient(110deg,transparent 12%,rgba(255,255,255,.06) 32%,rgba(255,255,255,.88) 48%,rgba(255,255,255,.1) 58%,transparent 76%)}
+.primary-btn:hover{filter:brightness(1.08);box-shadow:0 16px 32px rgba(8,48,119,.42),0 0 27px rgba(165,248,255,.56),inset 0 1px 1px #fff}
+.primary-btn:disabled{filter:grayscale(.35);opacity:.56}
+.secondary-btn{color:#f8fdff;border:1px solid rgba(255,255,255,.56);background:linear-gradient(145deg,rgba(255,255,255,.33),rgba(205,245,255,.13) 45%,rgba(40,98,190,.35));box-shadow:0 10px 22px rgba(14,52,130,.24),inset 0 1px 1px rgba(255,255,255,.9),inset 0 -7px 13px rgba(21,68,144,.2);backdrop-filter:blur(24px) saturate(1.8)}
+.section-head h2,h2{color:#f8fdff;text-shadow:0 2px 12px rgba(11,53,119,.32)}
+.dots{color:#bffbff;text-shadow:0 0 13px rgba(189,255,255,.8)}
+.tile{
+  border:1px solid rgba(255,255,255,.49);
+  background:linear-gradient(145deg,rgba(255,255,255,.42),rgba(207,247,255,.2) 17%,rgba(110,192,234,.24) 49%,rgba(27,93,177,.36));
+  backdrop-filter:blur(27px) saturate(1.9);-webkit-backdrop-filter:blur(27px) saturate(1.9);
+  box-shadow:0 14px 28px rgba(12,51,126,.26),0 1px 0 rgba(255,255,255,.82) inset,0 -1px 0 rgba(18,70,145,.22) inset,1px 0 0 rgba(255,255,255,.2) inset;
+}
+.tile:before{content:"";position:absolute;inset:1px;border-radius:22px;pointer-events:none;background:linear-gradient(164deg,rgba(255,255,255,.65),rgba(255,255,255,.19) 12%,rgba(255,255,255,.04) 30%,transparent 56%)}
+.tile:after{width:142px;height:142px;right:-69px;top:-81px;background:rgba(177,255,255,.42);filter:blur(20px)}
+.tile:hover{transform:translateY(-3px) scale(1.012);border-color:rgba(255,255,255,.82);box-shadow:0 19px 36px rgba(12,51,126,.34),0 0 20px rgba(174,248,255,.28),inset 0 1px #fff}
+.tile-icon{color:#e3fdff;text-shadow:0 2px 10px rgba(16,76,151,.6),0 0 15px rgba(188,255,255,.5)}
+.tile strong{color:#fff;text-shadow:0 2px 9px rgba(13,57,119,.47)}
+.tile small{color:#e2f7ff;text-shadow:0 1px 7px rgba(13,57,119,.36)}
+.mini-card{
+  color:#fff;border:1px solid rgba(255,255,255,.58);
+  background:linear-gradient(145deg,rgba(255,255,255,.48),rgba(200,245,255,.24) 18%,rgba(98,183,228,.28) 48%,rgba(33,97,174,.46));
+  backdrop-filter:blur(28px) saturate(1.9);-webkit-backdrop-filter:blur(28px) saturate(1.9);
+  box-shadow:0 16px 32px rgba(12,51,126,.29),inset 0 1.5px 1px rgba(255,255,255,.92),inset 0 -12px 22px rgba(20,73,146,.2);
+}
+.mini-card:after{content:"";position:absolute;inset:1px;border-radius:23px;pointer-events:none;background:linear-gradient(155deg,rgba(255,255,255,.56),rgba(255,255,255,.1) 16%,transparent 46%)}
+.mini-card .eyebrow{color:#e1fdff}
+.mini-card h3{color:#fff;text-shadow:0 2px 11px rgba(13,56,117,.44)}
+.mini-icon{color:#e5fdff;text-shadow:0 0 15px rgba(194,255,255,.8),0 3px 9px rgba(13,56,117,.45)}
+.page-title h1{color:#fff;text-shadow:0 2px 13px rgba(13,56,117,.35)}
+.page-title .muted{color:rgba(246,253,255,.89)}
+.step{color:#fff;border-color:rgba(255,255,255,.36);background:linear-gradient(145deg,rgba(255,255,255,.34),rgba(198,240,255,.13) 45%,rgba(30,82,168,.32));box-shadow:0 5px 12px rgba(15,53,128,.2),inset 0 1px #fff8}
+.step.active{color:#164d7d;background:linear-gradient(180deg,#fff,#c7f7ff 34%,#79dff5);box-shadow:0 6px 15px rgba(15,53,128,.25),0 0 18px rgba(172,247,255,.38),inset 0 1px #fff}
+.steps i{background:linear-gradient(90deg,rgba(231,253,255,.8),rgba(255,255,255,.23))}
+.service-row,.calendar-card,.summary-card,.text-card,.price-row,.contact-card,.profile-card{
+  border:1px solid rgba(255,255,255,.42);
+  background:linear-gradient(145deg,rgba(255,255,255,.39),rgba(205,246,255,.17) 18%,rgba(89,169,222,.24) 52%,rgba(28,78,160,.4));
+  backdrop-filter:blur(26px) saturate(1.85);-webkit-backdrop-filter:blur(26px) saturate(1.85);
+  box-shadow:0 13px 28px rgba(12,50,123,.25),inset 0 1px 1px rgba(255,255,255,.84),inset 0 -9px 17px rgba(20,72,147,.18);
+}
+.service-row{color:#fff}
+.service-row.selected{color:#fff;border-color:rgba(255,255,255,.9);background:linear-gradient(145deg,rgba(255,255,255,.66),rgba(173,247,255,.43) 38%,rgba(50,139,225,.53));box-shadow:0 13px 26px rgba(12,50,123,.32),0 0 22px rgba(165,248,255,.38),inset 0 1px 1px #fff}
+.service-row.selected .service-icon{background:linear-gradient(145deg,rgba(255,255,255,.62),rgba(45,127,202,.27));box-shadow:inset 0 1px #fff9,0 4px 11px rgba(13,56,117,.19)}
+.service-row.selected .check{background:linear-gradient(180deg,#fff,#a4efff 45%,#61c9ec);border-color:#fff;color:#124b80;box-shadow:0 0 13px rgba(184,250,255,.8)}
+.service-icon{background:linear-gradient(145deg,rgba(255,255,255,.32),rgba(42,116,192,.22));border:1px solid rgba(255,255,255,.2);box-shadow:inset 0 1px #fff7}
+.calendar-card{background:linear-gradient(145deg,rgba(255,255,255,.4),rgba(202,244,255,.18) 18%,rgba(75,154,211,.28) 52%,rgba(27,73,157,.47))}
+.month-row strong{color:#fff;text-shadow:0 2px 10px rgba(15,65,132,.35)}
+.weekdays{color:rgba(246,253,255,.88)}
+.calendar-grid button{border:1px solid rgba(255,255,255,.28);color:#fff;background:linear-gradient(145deg,rgba(255,255,255,.29),rgba(185,235,255,.1) 48%,rgba(35,91,173,.28));box-shadow:0 4px 9px rgba(15,55,129,.2),inset 0 1px #fff7}
+.calendar-grid button.available{color:#fff;border-color:rgba(255,255,255,.6);background:linear-gradient(145deg,rgba(255,255,255,.5),rgba(155,233,255,.28) 48%,rgba(50,133,212,.35))}
+.calendar-grid button.selected,.slot.selected{color:#164d7d;border:1px solid #fff;background:linear-gradient(180deg,#fff,#c8f6ff 38%,#72d9f3);box-shadow:0 8px 18px rgba(11,50,125,.3),0 0 18px rgba(168,249,255,.52),inset 0 1px #fff}
+.slot{color:#fff;border:1px solid rgba(255,255,255,.42);background:linear-gradient(145deg,rgba(255,255,255,.36),rgba(194,241,255,.15) 45%,rgba(40,98,177,.33));backdrop-filter:blur(20px) saturate(1.7);box-shadow:0 8px 18px rgba(13,53,125,.23),inset 0 1px #fff8}
+.slot:hover{border-color:#fff;box-shadow:0 12px 22px rgba(13,53,125,.3),0 0 16px rgba(181,250,255,.45),inset 0 1px #fff}
+.booking-summary{color:rgba(246,253,255,.9)}
+.summary-card p,.text-card p{color:rgba(246,253,255,.91)}
+.price-row strong{color:#f0fdff;text-shadow:0 1px 10px rgba(151,242,255,.5)}
+.photo-stack img,.wide-photo,.gallery-grid img{box-shadow:0 18px 34px rgba(12,45,111,.38),0 0 0 1px rgba(255,255,255,.55)}
+.contact-icon,.avatar{border:1px solid rgba(255,255,255,.52);background:linear-gradient(145deg,rgba(255,255,255,.51),rgba(157,229,255,.24) 48%,rgba(38,104,193,.3));color:#fff;box-shadow:0 6px 15px rgba(13,52,126,.24),inset 0 1px #fff}
+.contact-card small,.profile-card small{color:rgba(244,252,255,.88)}
+.bottom-nav{
+  border:1px solid rgba(255,255,255,.55);
+  background:linear-gradient(145deg,rgba(255,255,255,.44),rgba(198,244,255,.19) 18%,rgba(54,122,190,.35) 55%,rgba(28,65,142,.53));
+  backdrop-filter:blur(34px) saturate(2);-webkit-backdrop-filter:blur(34px) saturate(2);
+  box-shadow:0 18px 42px rgba(12,44,112,.38),inset 0 1.5px 1px rgba(255,255,255,.95),inset 0 -8px 17px rgba(23,67,137,.22);
+}
+.nav-item{color:rgba(249,254,255,.95)}
+.nav-item.active{color:#144d7b;border:1px solid rgba(255,255,255,.86);background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(198,248,255,.88) 38%,rgba(112,220,245,.83));box-shadow:0 6px 17px rgba(16,64,135,.32),0 0 19px rgba(174,250,255,.45),inset 0 1px 1px #fff}
+.nav-item.active span{text-shadow:0 1px 6px rgba(41,134,193,.24)}
+
+/* Dark graphite glass: restrained surfaces with the translucency kept on controls. */
+:root{--text:#f2f4f5;--muted:#b8bec3;--accent:#b6d9d5;--accent-dark:#101416;--line:rgba(238,246,248,.15)}
+html,body{background:#07090b;color:#f2f4f5}
+body{background:radial-gradient(ellipse at 50% 3%,#242a2d 0,#111518 38%,#07090b 78%)}
+.app-shell{
+  background:radial-gradient(ellipse at 88% 4%,rgba(144,183,174,.1),transparent 25%),radial-gradient(ellipse at 7% 60%,rgba(110,137,148,.09),transparent 34%),linear-gradient(160deg,#171b1e 0%,#101416 54%,#0a0c0e 100%);
+  box-shadow:0 30px 90px #000b,0 0 0 1px rgba(255,255,255,.08),inset 0 1px rgba(255,255,255,.1);
+}
+.app-shell:before{background:radial-gradient(ellipse at 48% 0%,rgba(255,255,255,.04),transparent 37%),repeating-linear-gradient(135deg,transparent 0 145px,rgba(255,255,255,.012) 146px 147px,transparent 148px 225px);opacity:.8}
+.brand-mark{color:#e8eeed;border-color:rgba(229,241,239,.32);background:linear-gradient(145deg,rgba(255,255,255,.17),rgba(255,255,255,.035) 46%,rgba(0,0,0,.28));box-shadow:0 7px 17px #0006,inset 0 1px #ffffff75,inset 0 -6px 12px #0005}
+.brand-name{color:#f2f4f5;text-shadow:none}
+.brand-sub{color:#aeb6b9;text-shadow:none}
+.icon-btn{
+  color:#f1f4f5;border:1px solid rgba(236,245,246,.25);
+  background:linear-gradient(145deg,rgba(255,255,255,.2),rgba(255,255,255,.055) 48%,rgba(0,0,0,.24));
+  box-shadow:0 7px 17px #0007,inset 0 1px #ffffff88,inset 0 -6px 12px #0005;
+  backdrop-filter:blur(22px) saturate(1.3);-webkit-backdrop-filter:blur(22px) saturate(1.3);
+}
+.welcome-card{
+  border:1px solid rgba(239,247,246,.2);
+  background:linear-gradient(100deg,rgba(8,11,12,.94) 0%,rgba(14,19,20,.76) 48%,rgba(13,19,20,.18) 100%),url('assets/salon-1.jfif') center/cover;
+  box-shadow:0 22px 42px #0009,0 0 24px rgba(171,210,202,.07),inset 0 1px rgba(255,255,255,.28),inset 0 -22px 36px rgba(0,0,0,.38);
+}
+.welcome-card:after{background:linear-gradient(150deg,rgba(255,255,255,.22) 0%,rgba(255,255,255,.07) 8%,transparent 26%,transparent 70%,rgba(176,212,204,.08) 100%),radial-gradient(ellipse at 88% 2%,rgba(255,255,255,.17),transparent 32%);box-shadow:inset 0 1px rgba(255,255,255,.24)}
+.welcome-card h1,.page-title h1{font-family:system-ui,-apple-system,sans-serif;font-weight:680;letter-spacing:-.035em}
+.welcome-card h1{color:#f4f6f6;text-shadow:0 3px 15px #000b}
+.welcome-card .muted{color:#c7cdcf;text-shadow:0 2px 8px #000b}
+.welcome-photo{filter:saturate(.48) contrast(1.08) brightness(.7);opacity:.84}
+.eyebrow{color:#c3d8d4;text-shadow:0 1px 9px #0009;letter-spacing:.09em}
+.primary-btn,.secondary-btn{
+  position:relative;overflow:hidden;border-radius:18px;
+  color:#f2f6f5;border:1px solid rgba(240,249,248,.36);
+  background:linear-gradient(145deg,rgba(255,255,255,.25),rgba(213,232,229,.11) 17%,rgba(81,99,98,.17) 48%,rgba(11,15,16,.45));
+  text-shadow:0 1px 5px #0008;
+  box-shadow:0 11px 24px #0008,0 0 14px rgba(178,218,210,.06),inset 0 1px 1px rgba(255,255,255,.7),inset 0 -7px 14px rgba(0,0,0,.3);
+  backdrop-filter:blur(25px) saturate(1.35);-webkit-backdrop-filter:blur(25px) saturate(1.35);
+}
+.primary-btn:before{background:linear-gradient(110deg,transparent 12%,rgba(255,255,255,.025) 32%,rgba(255,255,255,.58) 48%,rgba(255,255,255,.06) 58%,transparent 76%)}
+.primary-btn:hover,.secondary-btn:hover{color:#fff;border-color:rgba(240,249,248,.55);background:linear-gradient(145deg,rgba(255,255,255,.31),rgba(213,232,229,.15) 18%,rgba(81,99,98,.2) 48%,rgba(11,15,16,.42));box-shadow:0 15px 28px #0009,0 0 20px rgba(178,218,210,.12),inset 0 1px #ffffffbb,inset 0 -7px 14px #0004}
+.primary-btn:disabled{opacity:.43;filter:none}
+.tile{
+  border:1px solid rgba(237,246,245,.2);
+  background:linear-gradient(145deg,rgba(240,249,247,.19),rgba(205,226,223,.075) 18%,rgba(70,83,83,.14) 49%,rgba(9,13,14,.48));
+  backdrop-filter:blur(27px) saturate(1.3);-webkit-backdrop-filter:blur(27px) saturate(1.3);
+  box-shadow:0 14px 28px #0007,0 1px 0 rgba(255,255,255,.5) inset,0 -1px 0 rgba(0,0,0,.6) inset;
+}
+.tile:before{background:linear-gradient(164deg,rgba(255,255,255,.31),rgba(255,255,255,.09) 12%,rgba(255,255,255,.025) 30%,transparent 56%)}
+.tile:after{background:rgba(183,221,213,.11);filter:blur(21px)}
+.tile:hover{transform:translateY(-2px);border-color:rgba(230,244,241,.34);box-shadow:0 18px 32px #0009,0 0 17px rgba(183,221,213,.07),inset 0 1px #ffffff77}
+.tile-icon{color:#d7e4e1;text-shadow:0 2px 9px #0009}
+.tile strong{color:#f1f4f3;text-shadow:0 2px 8px #0009}
+.tile small{color:#b9c3c3;text-shadow:0 1px 6px #0009}
+.mini-card{
+  color:#f1f4f3;border:1px solid rgba(237,246,245,.22);
+  background:linear-gradient(145deg,rgba(240,249,247,.21),rgba(205,226,223,.085) 18%,rgba(70,83,83,.16) 48%,rgba(9,13,14,.52));
+  backdrop-filter:blur(27px) saturate(1.35);-webkit-backdrop-filter:blur(27px) saturate(1.35);
+  box-shadow:0 16px 32px #0008,inset 0 1px 1px rgba(255,255,255,.67),inset 0 -11px 21px rgba(0,0,0,.34);
+}
+.mini-card:after{background:linear-gradient(155deg,rgba(255,255,255,.3),rgba(255,255,255,.06) 16%,transparent 46%)}
+.mini-card .eyebrow{color:#c3d8d4}
+.mini-card h3{color:#f1f4f3;text-shadow:0 2px 9px #0009}
+.mini-icon{color:#c5d8d4;text-shadow:0 0 12px rgba(185,224,216,.3),0 3px 8px #0008}
+.section-head h2,h2{color:#eff3f2;text-shadow:0 2px 9px #0008}
+.dots{color:#c0d5d1;text-shadow:0 0 10px rgba(185,224,216,.32)}
+.page-title h1{color:#f2f4f5;text-shadow:0 2px 10px #0009}
+.page-title .muted{color:#afb9bb}
+.step{color:#e6ebea;border-color:rgba(235,245,243,.2);background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(255,255,255,.035) 45%,rgba(0,0,0,.28));box-shadow:0 5px 11px #0005,inset 0 1px #fff6}
+.step.active{color:#101719;background:linear-gradient(145deg,#eaf1ef,#b7cbc7);box-shadow:0 6px 14px #0006,inset 0 1px #fff}
+.steps i{background:linear-gradient(90deg,rgba(223,236,233,.42),rgba(255,255,255,.1))}
+.service-row,.calendar-card,.summary-card,.text-card,.price-row,.contact-card,.profile-card{
+  color:#edf2f1;border:1px solid rgba(237,246,245,.19);
+  background:linear-gradient(145deg,rgba(240,249,247,.18),rgba(205,226,223,.07) 18%,rgba(70,83,83,.14) 52%,rgba(9,13,14,.51));
+  backdrop-filter:blur(26px) saturate(1.28);-webkit-backdrop-filter:blur(26px) saturate(1.28);
+  box-shadow:0 13px 27px #0007,inset 0 1px 1px rgba(255,255,255,.58),inset 0 -9px 17px rgba(0,0,0,.34);
+}
+.service-row.selected{color:#f4f7f6;border-color:rgba(214,236,231,.48);background:linear-gradient(145deg,rgba(231,244,241,.28),rgba(168,199,192,.17) 38%,rgba(30,41,41,.57));box-shadow:0 13px 25px #0008,0 0 18px rgba(183,221,213,.1),inset 0 1px 1px #fff9}
+.service-row.selected .service-icon{background:linear-gradient(145deg,rgba(255,255,255,.22),rgba(0,0,0,.24));box-shadow:inset 0 1px #fff8,0 4px 10px #0005}
+.service-row.selected .check{background:linear-gradient(145deg,#dfe9e7,#99b3ad);border-color:#dfe9e7;color:#141a1a;box-shadow:0 0 10px rgba(190,220,213,.25)}
+.service-icon{background:linear-gradient(145deg,rgba(255,255,255,.15),rgba(0,0,0,.25));border:1px solid rgba(255,255,255,.15);box-shadow:inset 0 1px #fff5}
+.booking-summary{color:#bfc8c8}
+.calendar-card{background:linear-gradient(145deg,rgba(240,249,247,.2),rgba(205,226,223,.075) 18%,rgba(43,55,55,.22) 52%,rgba(7,11,12,.58))}
+.month-row strong{color:#edf2f1;text-shadow:0 2px 8px #0008}
+.weekdays{color:#bfc8c8}
+.calendar-grid button{border:1px solid rgba(240,248,247,.15);color:#e7edeb;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.025) 48%,rgba(0,0,0,.27));box-shadow:0 4px 8px #0004,inset 0 1px #fff5}
+.calendar-grid button.available{color:#edf3f1;border-color:rgba(216,236,232,.24);background:linear-gradient(145deg,rgba(240,249,247,.2),rgba(157,183,177,.09) 48%,rgba(0,0,0,.26))}
+.calendar-grid button.selected,.slot.selected{color:#111718;border:1px solid rgba(255,255,255,.72);background:linear-gradient(145deg,#eef3f2,#bdcfcb 48%,#899f9a);box-shadow:0 8px 17px #0008,0 0 15px rgba(183,221,213,.13),inset 0 1px #fff}
+.slot{color:#e9efed;border:1px solid rgba(237,246,245,.19);background:linear-gradient(145deg,rgba(240,249,247,.16),rgba(205,226,223,.055) 45%,rgba(0,0,0,.36));backdrop-filter:blur(20px) saturate(1.25);box-shadow:0 8px 16px #0006,inset 0 1px #fff6}
+.slot:hover{border-color:rgba(226,241,237,.38);box-shadow:0 11px 20px #0008,0 0 14px rgba(183,221,213,.08),inset 0 1px #fff8}
+.summary-card p,.text-card p{color:#c2c9c9}
+.price-row strong{color:#edf2f1;text-shadow:0 1px 8px #fff2}
+.contact-icon,.avatar{border:1px solid rgba(230,242,239,.22);background:linear-gradient(145deg,rgba(255,255,255,.19),rgba(203,225,221,.07) 48%,rgba(0,0,0,.32));color:#d5e2df;box-shadow:0 6px 14px #0006,inset 0 1px #fff8}
+.contact-card small,.profile-card small{color:#b8c1c2}
+.bottom-nav{
+  border:1px solid rgba(237,246,245,.23);
+  background:linear-gradient(145deg,rgba(241,250,248,.21),rgba(192,215,210,.085) 18%,rgba(46,58,58,.27) 55%,rgba(7,10,11,.68));
+  backdrop-filter:blur(34px) saturate(1.32);-webkit-backdrop-filter:blur(34px) saturate(1.32);
+  box-shadow:0 18px 38px #0009,inset 0 1.5px 1px rgba(255,255,255,.67),inset 0 -8px 17px rgba(0,0,0,.4);
+}
+.nav-item{color:#cbd2d1}
+.nav-item.active{color:#101616;border:1px solid rgba(245,250,249,.55);background:linear-gradient(145deg,rgba(245,250,249,.8),rgba(205,222,219,.55) 44%,rgba(127,151,146,.5));box-shadow:0 6px 15px #0008,0 0 14px rgba(183,221,213,.12),inset 0 1px #fff}
+.nav-item.active span{text-shadow:0 1px 5px #fff8}
+
+/* Neutral charcoal palette with a restrained aqua accent. */
+:root{--text:#f3f5f6;--muted:#aeb4ba;--accent:#75e2d4;--accent-dark:#091112;--line:rgba(242,246,248,.14)}
+html,body{background:#070809;color:#f3f5f6}
+body{background:radial-gradient(ellipse at 50% 4%,#202326 0,#111315 39%,#070809 79%)}
+.app-shell{background:radial-gradient(ellipse at 88% 5%,rgba(117,226,212,.065),transparent 24%),linear-gradient(160deg,#17191b 0%,#101214 55%,#090a0b 100%);box-shadow:0 30px 90px #000b,0 0 0 1px rgba(255,255,255,.07),inset 0 1px rgba(255,255,255,.09)}
+.app-shell:before{background:radial-gradient(ellipse at 48% 0%,rgba(255,255,255,.035),transparent 37%),repeating-linear-gradient(135deg,transparent 0 145px,rgba(255,255,255,.01) 146px 147px,transparent 148px 225px)}
+.brand-mark{color:#e9eeee;border-color:rgba(238,245,245,.29);background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(255,255,255,.025) 48%,rgba(0,0,0,.3));box-shadow:0 7px 17px #0007,inset 0 1px #fff7,inset 0 -6px 12px #0006}
+.icon-btn{border-color:rgba(240,246,247,.22);background:linear-gradient(145deg,rgba(255,255,255,.17),rgba(255,255,255,.035) 48%,rgba(0,0,0,.28));box-shadow:0 7px 17px #0007,inset 0 1px #ffffff77,inset 0 -6px 12px #0006}
+.welcome-card{background:linear-gradient(100deg,rgba(7,9,10,.95) 0%,rgba(13,16,17,.78) 48%,rgba(12,16,17,.19) 100%),url('assets/salon-1.jfif') center/cover;border-color:rgba(240,247,247,.18);box-shadow:0 22px 42px #0009,0 0 24px rgba(117,226,212,.045),inset 0 1px rgba(255,255,255,.24),inset 0 -22px 36px rgba(0,0,0,.4)}
+.welcome-card:after{background:linear-gradient(150deg,rgba(255,255,255,.18),rgba(255,255,255,.045) 10%,transparent 28%,transparent 70%,rgba(117,226,212,.045)),radial-gradient(ellipse at 88% 2%,rgba(255,255,255,.14),transparent 32%)}
+.welcome-photo{filter:saturate(.36) contrast(1.06) brightness(.68)}
+.eyebrow{color:#b9d7d3;text-shadow:none}
+.primary-btn,.secondary-btn{border-color:rgba(236,244,244,.28);background:linear-gradient(145deg,rgba(249,253,253,.2),rgba(220,232,232,.075) 18%,rgba(95,108,108,.12) 52%,rgba(8,11,12,.5));box-shadow:0 11px 24px #0008,inset 0 1px 1px rgba(255,255,255,.64),inset 0 -7px 14px rgba(0,0,0,.35)}
+.primary-btn{color:#eff8f7}
+.primary-btn:before{background:linear-gradient(110deg,transparent 12%,rgba(255,255,255,.02) 32%,rgba(255,255,255,.48) 48%,rgba(255,255,255,.04) 58%,transparent 76%)}
+.primary-btn:hover,.secondary-btn:hover{border-color:rgba(117,226,212,.44);background:linear-gradient(145deg,rgba(117,226,212,.22),rgba(210,237,233,.08) 22%,rgba(63,83,82,.17) 56%,rgba(8,11,12,.45));box-shadow:0 15px 28px #0009,0 0 17px rgba(117,226,212,.09),inset 0 1px #ffffffaa}
+.tile{border-color:rgba(235,242,243,.16);background:linear-gradient(145deg,rgba(242,248,248,.15),rgba(213,225,225,.045) 18%,rgba(77,85,87,.1) 49%,rgba(8,10,11,.5));box-shadow:0 14px 28px #0008,0 1px 0 rgba(255,255,255,.42) inset,0 -1px 0 rgba(0,0,0,.65) inset}
+.tile:before{background:linear-gradient(164deg,rgba(255,255,255,.25),rgba(255,255,255,.06) 12%,rgba(255,255,255,.018) 30%,transparent 56%)}
+.tile:after{background:rgba(117,226,212,.08)}
+.tile:hover{border-color:rgba(117,226,212,.32);box-shadow:0 18px 32px #0009,0 0 17px rgba(117,226,212,.055),inset 0 1px #ffffff66}
+.tile-icon{color:#c4dad7;text-shadow:0 2px 9px #0009}
+.tile strong{color:#eff3f3}
+.tile small{color:#b6bfc1}
+.mini-card{border-color:rgba(235,243,243,.17);background:linear-gradient(145deg,rgba(242,248,248,.17),rgba(213,225,225,.05) 18%,rgba(77,85,87,.12) 48%,rgba(8,10,11,.54));box-shadow:0 16px 32px #0008,inset 0 1px 1px rgba(255,255,255,.58),inset 0 -11px 21px rgba(0,0,0,.38)}
+.mini-card:after{background:linear-gradient(155deg,rgba(255,255,255,.24),rgba(255,255,255,.045) 16%,transparent 46%)}
+.mini-card .eyebrow{color:#b9d7d3}
+.mini-icon{color:#a9d6d0;text-shadow:0 0 12px rgba(117,226,212,.18),0 3px 8px #0008}
+.section-head h2,h2,.page-title h1{color:#eff3f3}
+.dots{color:#a9d6d0;text-shadow:0 0 10px rgba(117,226,212,.16)}
+.step{border-color:rgba(235,243,243,.16);background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.025) 45%,rgba(0,0,0,.3))}
+.step.active{color:#0d1717;background:linear-gradient(145deg,#e8f0ef,#b3c9c5);box-shadow:0 6px 14px #0007,inset 0 1px #fff}
+.service-row,.calendar-card,.summary-card,.text-card,.price-row,.contact-card,.profile-card{border-color:rgba(235,243,243,.16);background:linear-gradient(145deg,rgba(242,248,248,.14),rgba(213,225,225,.045) 18%,rgba(77,85,87,.1) 52%,rgba(8,10,11,.53));box-shadow:0 13px 27px #0008,inset 0 1px 1px rgba(255,255,255,.48),inset 0 -9px 17px rgba(0,0,0,.38)}
+.service-row.selected{border-color:rgba(117,226,212,.49);background:linear-gradient(145deg,rgba(117,226,212,.17),rgba(207,232,229,.07) 38%,rgba(19,29,30,.58));box-shadow:0 13px 25px #0008,0 0 17px rgba(117,226,212,.08),inset 0 1px 1px #fff8}
+.service-icon{background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(0,0,0,.28));border-color:rgba(240,246,246,.14)}
+.service-row.selected .service-icon{background:linear-gradient(145deg,rgba(117,226,212,.2),rgba(0,0,0,.26))}
+.calendar-card{background:linear-gradient(145deg,rgba(242,248,248,.15),rgba(213,225,225,.045) 18%,rgba(43,49,51,.16) 52%,rgba(7,9,10,.6))}
+.calendar-grid button{border-color:rgba(240,247,247,.13);background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.018) 48%,rgba(0,0,0,.3))}
+.calendar-grid button.available{border-color:rgba(117,226,212,.23);background:linear-gradient(145deg,rgba(117,226,212,.12),rgba(255,255,255,.025) 48%,rgba(0,0,0,.28))}
+.calendar-grid button.selected,.slot.selected{color:#0c1918;border-color:rgba(185,242,234,.75);background:linear-gradient(145deg,#e4f4f1,#9ed8cf 52%,#68b5aa);box-shadow:0 8px 17px #0008,0 0 15px rgba(117,226,212,.16),inset 0 1px #fff}
+.slot{border-color:rgba(235,243,243,.16);background:linear-gradient(145deg,rgba(242,248,248,.13),rgba(213,225,225,.035) 45%,rgba(0,0,0,.4))}
+.slot:hover{border-color:rgba(117,226,212,.38);box-shadow:0 11px 20px #0008,0 0 14px rgba(117,226,212,.06),inset 0 1px #fff7}
+.price-row strong{color:#e7f0ee;text-shadow:none}
+.contact-icon,.avatar{border-color:rgba(117,226,212,.2);background:linear-gradient(145deg,rgba(117,226,212,.16),rgba(255,255,255,.04) 48%,rgba(0,0,0,.34));color:#c5ddd9}
+.bottom-nav{border-color:rgba(235,243,243,.18);background:linear-gradient(145deg,rgba(242,248,248,.16),rgba(213,225,225,.045) 18%,rgba(46,51,53,.19) 55%,rgba(6,8,9,.71));box-shadow:0 18px 38px #000a,inset 0 1.5px 1px rgba(255,255,255,.58),inset 0 -8px 17px rgba(0,0,0,.45)}
+.nav-item{color:#c5cccc}
+.nav-item.active{color:#101817;border-color:rgba(117,226,212,.32);background:linear-gradient(145deg,rgba(117,226,212,.28),rgba(213,238,235,.12) 44%,rgba(56,78,77,.3));box-shadow:0 6px 15px #0008,0 0 13px rgba(117,226,212,.07),inset 0 1px #ffffff99}
+.nav-item.active span{text-shadow:0 0 9px rgba(117,226,212,.2)}
+
+/* Service selection control: a compact, tactile frosted checkbox with a clear checked state. */
+.check{
+  position:relative;overflow:hidden;flex:0 0 27px;width:27px;height:27px;
+  border-radius:9px;border:1px solid rgba(235,245,244,.34);
+  background:linear-gradient(145deg,rgba(255,255,255,.18),rgba(255,255,255,.045) 48%,rgba(0,0,0,.35));
+  color:transparent;font-size:15px;font-weight:800;line-height:1;
+  box-shadow:0 4px 9px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.48),inset 0 -3px 6px rgba(0,0,0,.3);
+  transition:background .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease;
+}
+.check:after{content:"";position:absolute;inset:1px 1px 48%;border-radius:8px 8px 5px 5px;background:linear-gradient(180deg,rgba(255,255,255,.23),transparent);pointer-events:none}
+.service-row.selected .check{
+  color:#10201e;border-color:rgba(193,255,247,.78);
+  background:linear-gradient(145deg,#d7fbf4 0%,#8de0d3 48%,#54a99f 100%);
+  box-shadow:0 0 0 3px rgba(117,226,212,.11),0 4px 12px rgba(0,0,0,.33),0 0 14px rgba(117,226,212,.18),inset 0 1px #fff,inset 0 -2px 4px rgba(15,87,79,.3);
+  transform:scale(1.04);
+}
+.service-row.selected .check:after{background:linear-gradient(180deg,rgba(255,255,255,.58),rgba(255,255,255,.04))}
+
+/* Reference direction: graphite frame, readable blue-grey glass panels, white active controls. */
+:root{--text:#f6f8f8;--muted:#d3dadd;--accent:#c5e5f0;--accent-dark:#20282c;--line:rgba(255,255,255,.18)}
+html,body{background:#3e454b;color:#f6f8f8}
+body{background:radial-gradient(ellipse at 50% 2%,#626b71 0,#454d53 42%,#343b40 88%)}
+.app-shell{
+  background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.1),transparent 38%),linear-gradient(160deg,#5a676d 0%,#48555c 52%,#3d484e 100%);
+  box-shadow:0 28px 76px rgba(0,0,0,.52),0 0 0 1px rgba(255,255,255,.15),inset 0 1px rgba(255,255,255,.2);
+}
+.app-shell:before{background:repeating-linear-gradient(135deg,transparent 0 125px,rgba(255,255,255,.022) 126px 127px,transparent 128px 205px),radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.055),transparent 38%);opacity:.72}
+.brand-mark{color:#f4f7f7;border-color:rgba(255,255,255,.42);background:linear-gradient(145deg,rgba(255,255,255,.24),rgba(230,242,246,.09) 48%,rgba(22,30,34,.2));box-shadow:0 6px 14px #0003,inset 0 1px #ffffffaa,inset 0 -5px 10px #0003}
+.brand-name{color:#fff;letter-spacing:.08em}
+.brand-sub{color:#e0e6e8}
+.icon-btn{border-color:rgba(255,255,255,.27);background:linear-gradient(145deg,rgba(255,255,255,.22),rgba(222,237,242,.08) 48%,rgba(20,28,32,.22));box-shadow:0 6px 14px #0004,inset 0 1px #ffffffaa,inset 0 -5px 10px #0003}
+.welcome-card{
+  background:linear-gradient(100deg,rgba(25,31,34,.9) 0%,rgba(33,42,46,.68) 48%,rgba(28,38,42,.16) 100%),url('assets/salon-1.jfif') center/cover;
+  border-color:rgba(255,255,255,.28);box-shadow:0 18px 34px #0005,inset 0 1px rgba(255,255,255,.34),inset 0 -18px 30px rgba(0,0,0,.35);
+}
+.welcome-card:after{background:linear-gradient(150deg,rgba(255,255,255,.26),rgba(255,255,255,.07) 10%,transparent 28%,transparent 72%,rgba(205,231,240,.1)),radial-gradient(ellipse at 88% 2%,rgba(255,255,255,.2),transparent 34%)}
+.welcome-photo{filter:saturate(.62) contrast(1.04) brightness(.74);opacity:.88}
+.welcome-card h1,.page-title h1{font-family:Georgia,ui-serif,serif;font-weight:500;letter-spacing:-.025em}
+.welcome-card h1{font-size:32px;color:#fff;text-shadow:0 2px 12px #0009}
+.welcome-card .muted{color:#e0e6e8;text-shadow:0 1px 8px #0008}
+.eyebrow{color:#d8e9ed;text-shadow:0 1px 6px #0005;letter-spacing:.07em}
+.primary-btn,.secondary-btn{
+  border:1px solid rgba(255,255,255,.36);border-radius:18px;
+  color:#f8fafb;background:linear-gradient(145deg,rgba(239,247,249,.3),rgba(217,232,237,.16) 22%,rgba(143,163,171,.3) 57%,rgba(70,83,89,.4));
+  box-shadow:0 9px 18px rgba(20,29,34,.28),inset 0 1px 1px rgba(255,255,255,.66),inset 0 -6px 12px rgba(20,29,34,.2);
+  backdrop-filter:blur(22px) saturate(1.15);-webkit-backdrop-filter:blur(22px) saturate(1.15);
+}
+.primary-btn:before{background:linear-gradient(110deg,transparent 12%,rgba(255,255,255,.02) 32%,rgba(255,255,255,.5) 48%,rgba(255,255,255,.07) 58%,transparent 76%)}
+.primary-btn:hover,.secondary-btn:hover{background:linear-gradient(145deg,rgba(255,255,255,.39),rgba(225,239,243,.2) 22%,rgba(157,178,186,.34) 57%,rgba(72,87,94,.42));border-color:rgba(255,255,255,.52);box-shadow:0 12px 22px rgba(20,29,34,.34),inset 0 1px 1px #fff}
+.primary-btn:disabled{opacity:.46}
+.section-head h2,h2{color:#f6f8f8;text-shadow:0 1px 8px #0003}
+.dots{color:#d2e7ee;text-shadow:0 0 10px rgba(211,239,248,.28)}
+.tile{
+  border:1px solid rgba(255,255,255,.25);
+  background:linear-gradient(145deg,rgba(239,247,249,.36),rgba(217,232,237,.22) 18%,rgba(158,179,187,.42) 51%,rgba(108,128,136,.56));
+  backdrop-filter:blur(25px) saturate(1.15);-webkit-backdrop-filter:blur(25px) saturate(1.15);
+  box-shadow:0 10px 21px rgba(20,29,34,.22),inset 0 1px 1px rgba(255,255,255,.62),inset 0 -6px 12px rgba(29,41,46,.12);
+}
+.tile:before{background:linear-gradient(164deg,rgba(255,255,255,.38),rgba(255,255,255,.11) 12%,rgba(255,255,255,.025) 32%,transparent 58%)}
+.tile:after{background:rgba(222,242,248,.12);filter:blur(20px)}
+.tile:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.48);box-shadow:0 14px 25px rgba(20,29,34,.3),inset 0 1px #ffffffbb}
+.tile-icon{color:#eef7f9;text-shadow:0 1px 8px rgba(28,44,50,.35)}
+.tile strong{color:#fff;text-shadow:0 1px 6px rgba(20,35,42,.3)}
+.tile small{color:#edf2f3;text-shadow:0 1px 5px rgba(20,35,42,.3)}
+.mini-card{
+  border:1px solid rgba(255,255,255,.3);color:#fff;
+  background:linear-gradient(145deg,rgba(239,247,249,.38),rgba(217,232,237,.22) 18%,rgba(158,179,187,.43) 48%,rgba(108,128,136,.58));
+  box-shadow:0 12px 24px rgba(20,29,34,.25),inset 0 1px 1px rgba(255,255,255,.72),inset 0 -8px 14px rgba(29,41,46,.14);
+}
+.mini-card:after{background:linear-gradient(155deg,rgba(255,255,255,.4),rgba(255,255,255,.09) 16%,transparent 48%)}
+.mini-card .eyebrow{color:#edf5f6}
+.mini-card h3{color:#fff;text-shadow:0 1px 7px rgba(20,35,42,.32)}
+.mini-icon{color:#e8f3f6;text-shadow:0 2px 8px rgba(20,35,42,.35)}
+.page-title h1{color:#fff;text-shadow:0 1px 8px rgba(20,35,42,.32)}
+.page-title .muted{color:#e1e7e9}
+.step{border-color:rgba(255,255,255,.25);background:linear-gradient(145deg,rgba(239,247,249,.28),rgba(217,232,237,.12) 45%,rgba(44,54,59,.34));box-shadow:0 4px 9px #0003,inset 0 1px #fff8}
+.step.active{color:#22292c;background:linear-gradient(180deg,#fff 0%,#edf2f3 100%);box-shadow:0 5px 12px #0004,inset 0 1px #fff}
+.steps i{background:linear-gradient(90deg,rgba(255,255,255,.55),rgba(255,255,255,.2))}
+.service-row,.calendar-card,.summary-card,.text-card,.price-row,.contact-card,.profile-card{
+  color:#f8fafb;border:1px solid rgba(255,255,255,.24);
+  background:linear-gradient(145deg,rgba(232,241,244,.34),rgba(211,227,232,.2) 18%,rgba(151,172,181,.4) 52%,rgba(99,118,126,.56));
+  backdrop-filter:blur(24px) saturate(1.12);-webkit-backdrop-filter:blur(24px) saturate(1.12);
+  box-shadow:0 10px 21px rgba(20,29,34,.23),inset 0 1px 1px rgba(255,255,255,.62),inset 0 -7px 13px rgba(29,41,46,.13);
+}
+.service-row{color:#f8fafb}
+.service-row.selected{color:#252c30;border-color:rgba(255,255,255,.82);background:linear-gradient(145deg,#fff 0%,#edf3f5 58%,#d8e4e8 100%);box-shadow:0 9px 18px rgba(20,29,34,.24),inset 0 1px #fff}
+.service-row.selected .service-info small{color:#59656a}
+.service-icon{background:linear-gradient(145deg,rgba(247,251,252,.32),rgba(59,76,83,.2));border:1px solid rgba(255,255,255,.2);box-shadow:inset 0 1px #fff8}
+.service-row.selected .service-icon{background:linear-gradient(145deg,#dce7ea,#bdcdd2);border-color:rgba(91,111,118,.18);box-shadow:inset 0 1px #fff}
+.calendar-card{background:linear-gradient(145deg,rgba(231,241,244,.38),rgba(211,227,232,.22) 18%,rgba(151,172,181,.42) 52%,rgba(99,118,126,.58))}
+.month-row strong{color:#fff;text-shadow:0 1px 7px rgba(24,40,46,.25)}
+.weekdays{color:#f1f5f6}
+.calendar-grid button{color:#f8fafb;border:1px solid rgba(255,255,255,.24);background:linear-gradient(145deg,rgba(241,248,250,.26),rgba(211,227,232,.11) 48%,rgba(67,81,87,.31));box-shadow:0 3px 7px #0003,inset 0 1px #fff8}
+.calendar-grid button.available{border-color:rgba(255,255,255,.36);background:linear-gradient(145deg,rgba(227,244,249,.46),rgba(193,224,234,.29) 48%,rgba(112,146,158,.4))}
+.calendar-grid button.selected,.slot.selected{color:#1d282d;border:1px solid #fff;background:linear-gradient(180deg,#fff,#e5eff2);box-shadow:0 6px 14px #0004,inset 0 1px #fff}
+.slot{color:#f8fafb;border:1px solid rgba(255,255,255,.25);background:linear-gradient(145deg,rgba(241,248,250,.3),rgba(211,227,232,.14) 45%,rgba(67,81,87,.36));box-shadow:0 6px 13px #0003,inset 0 1px #fff8}
+.slot:hover{border-color:rgba(255,255,255,.58);box-shadow:0 9px 16px #0004,inset 0 1px #fff}
+.booking-summary{color:#edf1f2}
+.summary-card p,.text-card p{color:#f0f3f4}
+.price-row strong{color:#fff;text-shadow:0 1px 6px rgba(20,35,42,.25)}
+.contact-icon,.avatar{border:1px solid rgba(255,255,255,.33);background:linear-gradient(145deg,rgba(244,249,250,.4),rgba(205,226,232,.22) 48%,rgba(74,94,102,.35));color:#fff;box-shadow:0 5px 11px #0003,inset 0 1px #fff9}
+.contact-card small,.profile-card small{color:#edf2f3}
+.bottom-nav{
+  border:1px solid rgba(255,255,255,.22);
+  background:linear-gradient(145deg,rgba(27,32,35,.96),rgba(31,37,40,.91));
+  backdrop-filter:blur(26px) saturate(1.15);-webkit-backdrop-filter:blur(26px) saturate(1.15);
+  box-shadow:0 14px 28px rgba(0,0,0,.42),inset 0 1px 1px rgba(255,255,255,.16),inset 0 -5px 11px rgba(0,0,0,.28);
+}
+.nav-item{color:#e0e5e7}
+.nav-item.active{color:#252c30;border:1px solid rgba(255,255,255,.9);background:linear-gradient(180deg,#fff,#e8eef0);box-shadow:0 4px 11px rgba(0,0,0,.3),inset 0 1px #fff}
+.nav-item.active span{text-shadow:none}
+.check{border-radius:8px;border-color:rgba(255,255,255,.5);background:linear-gradient(145deg,rgba(244,249,250,.37),rgba(206,222,227,.18) 48%,rgba(59,72,78,.34));box-shadow:0 3px 7px #0003,inset 0 1px #fff9,inset 0 -3px 6px #0002}
+.service-row.selected .check{color:#283034;border-color:rgba(255,255,255,.95);background:linear-gradient(180deg,#fff,#dfebee);box-shadow:0 0 0 2px rgba(255,255,255,.18),0 3px 8px #0003,inset 0 1px #fff}
+
+/* Clearer slate backdrop, more translucent glass, crisp diagonal hero split. */
+.app-shell{background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.13),transparent 38%),linear-gradient(160deg,#69767d 0%,#58656c 52%,#4a575e 100%)}
+.app-shell:before{background:repeating-linear-gradient(135deg,transparent 0 125px,rgba(255,255,255,.028) 126px 127px,transparent 128px 205px),radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.07),transparent 38%)}
+.welcome-card{
+  background:
+    linear-gradient(90deg,rgba(16,21,24,.6) 0%,rgba(16,21,24,.36) 42%,rgba(16,21,24,.04) 80%),
+    url('assets/salon-1.jfif') left center/62% 100% no-repeat,
+    linear-gradient(135deg,#5e7077,#89999f 60%,#4f5e64);
+}
+.welcome-photo{
+  width:57%;right:0;opacity:.98;
+  background:url('assets/salon-2.jfif') center/cover;
+  clip-path:polygon(25% 0,100% 0,100% 100%,0 100%);
+  -webkit-clip-path:polygon(25% 0,100% 0,100% 100%,0 100%);
+  mask-image:none;
+  filter:saturate(.58) contrast(1.05) brightness(.84);
+}
+.welcome-photo:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.13),transparent 34%,rgba(0,0,0,.13))}
+.welcome-card:after{background:linear-gradient(150deg,rgba(255,255,255,.27),rgba(255,255,255,.07) 10%,transparent 28%,transparent 72%,rgba(205,231,240,.1)),radial-gradient(ellipse at 88% 2%,rgba(255,255,255,.2),transparent 34%)}
+.tile{
+  background:linear-gradient(145deg,rgba(255,255,255,.24),rgba(225,237,240,.095) 18%,rgba(159,181,190,.22) 51%,rgba(108,128,136,.3));
+  backdrop-filter:blur(30px) saturate(1.2);-webkit-backdrop-filter:blur(30px) saturate(1.2);
+  border-color:rgba(255,255,255,.3);
+  box-shadow:0 12px 22px rgba(20,29,34,.2),inset 0 1px 1px rgba(255,255,255,.72),inset 0 -6px 12px rgba(29,41,46,.11);
+}
+.service-row,.calendar-card,.summary-card,.text-card,.price-row,.contact-card,.profile-card{
+  background:linear-gradient(145deg,rgba(255,255,255,.23),rgba(225,237,240,.09) 18%,rgba(159,181,190,.2) 52%,rgba(108,128,136,.29));
+  backdrop-filter:blur(29px) saturate(1.18);-webkit-backdrop-filter:blur(29px) saturate(1.18);
+  border-color:rgba(255,255,255,.29);
+}
+.mini-card{
+  background:linear-gradient(145deg,rgba(255,255,255,.25),rgba(225,237,240,.1) 18%,rgba(159,181,190,.22) 48%,rgba(108,128,136,.32));
+  backdrop-filter:blur(30px) saturate(1.2);-webkit-backdrop-filter:blur(30px) saturate(1.2);
+}
+.primary-btn,.secondary-btn{
+  background:linear-gradient(145deg,rgba(255,255,255,.3),rgba(225,237,240,.12) 22%,rgba(143,165,173,.24) 57%,rgba(70,83,89,.34));
+  backdrop-filter:blur(27px) saturate(1.2);-webkit-backdrop-filter:blur(27px) saturate(1.2);
+  border-color:rgba(255,255,255,.43);
+  box-shadow:0 9px 18px rgba(20,29,34,.25),inset 0 1px 1px rgba(255,255,255,.85),inset 0 -6px 12px rgba(20,29,34,.18);
+}
+.primary-btn:hover,.secondary-btn:hover{background:linear-gradient(145deg,rgba(255,255,255,.39),rgba(225,237,240,.16) 22%,rgba(157,178,186,.28) 57%,rgba(72,87,94,.38))}
+.bottom-nav{
+  overflow:hidden;
+  background:linear-gradient(145deg,rgba(219,230,234,.32),rgba(147,164,171,.23) 16%,rgba(72,86,93,.58) 50%,rgba(28,35,39,.78));
+  border:1px solid rgba(255,255,255,.47);
+  backdrop-filter:blur(36px) saturate(1.45);-webkit-backdrop-filter:blur(36px) saturate(1.45);
+  box-shadow:0 19px 38px rgba(0,0,0,.42),0 0 0 1px rgba(255,255,255,.08),inset 0 1.5px 1px rgba(255,255,255,.92),inset 0 -10px 18px rgba(8,13,16,.38);
+}
+.bottom-nav:before{content:"";position:absolute;inset:1px 1px auto;height:45%;border-radius:26px 26px 50% 50%;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,.07) 45%,transparent);box-shadow:0 1px rgba(255,255,255,.22)}
+.bottom-nav:after{content:"";position:absolute;left:12%;right:12%;bottom:-22px;height:36px;border-radius:50%;pointer-events:none;background:rgba(220,241,246,.17);filter:blur(16px)}
+.nav-item{position:relative;z-index:1}
+.nav-item.active{background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(238,244,246,.88));border:1px solid rgba(255,255,255,.98);box-shadow:0 5px 15px rgba(0,0,0,.28),inset 0 1px 1px #fff}
+.check{flex:0 0 30px;width:30px;height:30px;border-radius:9px}
+.service-row.selected .check{transform:scale(1.02)}
+
+/* One continuous canvas behind the centered mobile layout; no darker side bands. */
+html,body{background:#58666c}
+body{min-height:100dvh}
+.app-shell{background:transparent;box-shadow:none}
+.app-shell:before{display:none}
+
+/* Bottom navigation: transparent iPhone-like glass without backdrop blur. */
+.bottom-nav{
+  background:linear-gradient(155deg,rgba(247,251,252,.22) 0%,rgba(230,240,243,.1) 19%,rgba(162,182,190,.12) 52%,rgba(28,36,41,.28) 100%);
+  border:1px solid rgba(249,253,254,.48);
+  backdrop-filter:none;-webkit-backdrop-filter:none;
+  box-shadow:0 14px 28px rgba(0,0,0,.32),0 1px 0 rgba(255,255,255,.2),inset 0 1.5px 1px rgba(255,255,255,.72),inset 0 -7px 14px rgba(11,17,21,.2);
+}
+.bottom-nav:before{
+  background:linear-gradient(180deg,rgba(255,255,255,.32),rgba(255,255,255,.1) 38%,transparent 82%);
+  box-shadow:inset 0 1px rgba(255,255,255,.28);
+}
+.bottom-nav:after{display:none}
+.nav-item{backdrop-filter:none;-webkit-backdrop-filter:none}
+.nav-item.active{background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(226,236,239,.78));border-color:rgba(255,255,255,.84);box-shadow:0 4px 11px rgba(0,0,0,.23),inset 0 1px 1px rgba(255,255,255,.95)}
+
+/* Put the doorway photo above the page canvas and directly behind the app UI. */
+html{background:#13171a}
+body{position:relative;isolation:isolate;background:#13171a}
+body:before{
+  content:"";position:fixed;z-index:0;inset:-2px;pointer-events:none;
+  background-image:linear-gradient(rgba(10,14,17,.4),rgba(10,14,17,.4)),url('assets/salon-3.jfif');
+  background-position:center center;background-size:cover;background-repeat:no-repeat;
+  filter:blur(.45px) brightness(.86);transform:scale(1.006);
+}
+.app-shell{position:relative;z-index:1;background:transparent;box-shadow:none}
+.app-shell:before{display:none}
+
+/* The narrow centered frame is for desktop preview only; phones use the full viewport. */
+@media(max-width:699px){
+  html,body{width:100%;min-width:0;min-height:100%;margin:0;padding:0;overflow-x:hidden}
+  body{display:block}
+  .app-shell{width:100vw;max-width:100vw;min-height:100vh;min-height:100dvh;margin:0;border-radius:0;overflow-x:hidden;box-shadow:none}
+  .bottom-nav{position:fixed}
+}
+
+/* Temporary crisp graphite pattern; glass panels reveal the backdrop beneath them. */
+html,body{background-color:#353c42}
+body{
+  background-color:#353c42;
+  background-image:
+    linear-gradient(150deg,transparent 0 31%,rgba(227,236,239,.11) 31.12% 31.3%,transparent 31.42% 100%),
+    linear-gradient(28deg,transparent 0 61%,rgba(11,15,18,.34) 61.12% 76%,transparent 76.12% 100%),
+    repeating-linear-gradient(135deg,rgba(229,238,241,.045) 0 1px,transparent 1px 34px),
+    radial-gradient(ellipse at 78% 18%,#566168 0,transparent 38%),
+    linear-gradient(155deg,#30373c 0%,#414a50 52%,#30373c 100%);
+  background-attachment:fixed;
+}
+.app-shell{background:transparent;box-shadow:none}
+.app-shell:before{display:none}
+.tile,.service-row,.calendar-card,.summary-card,.text-card,.price-row,.contact-card,.profile-card,.mini-card{
+  border:1px solid rgba(240,247,249,.28);
+  background:linear-gradient(145deg,rgba(237,245,247,.28),rgba(219,231,234,.13) 20%,rgba(135,152,159,.24) 56%,rgba(73,85,91,.35));
+  backdrop-filter:blur(24px) saturate(1.18);-webkit-backdrop-filter:blur(24px) saturate(1.18);
+  box-shadow:0 12px 24px rgba(12,17,20,.24),inset 0 1px 1px rgba(255,255,255,.68),inset 0 -8px 16px rgba(16,22,25,.16);
+}
+.tile:before,.mini-card:after{background:linear-gradient(155deg,rgba(255,255,255,.37),rgba(255,255,255,.08) 18%,transparent 50%)}
+.tile:hover{border-color:rgba(255,255,255,.48);box-shadow:0 16px 29px rgba(12,17,20,.32),inset 0 1px 1px #fff}
+.tile-icon{color:#edf4f5}
+.tile small{color:#e0e7e9}
+.mini-card .eyebrow{color:#edf4f5}
+.primary-btn,.secondary-btn,.icon-btn,.slot,.calendar-grid button,.check{
+  border:1px solid rgba(244,249,250,.36);
+  background:linear-gradient(145deg,rgba(248,252,253,.3),rgba(224,237,240,.14) 22%,rgba(126,145,153,.24) 58%,rgba(46,57,63,.4));
+  backdrop-filter:blur(22px) saturate(1.2);-webkit-backdrop-filter:blur(22px) saturate(1.2);
+  box-shadow:0 8px 17px rgba(12,17,20,.26),inset 0 1px 1px rgba(255,255,255,.82),inset 0 -6px 12px rgba(14,20,23,.19);
+}
+.primary-btn,.secondary-btn{color:#f8fafb}
+.primary-btn:hover,.secondary-btn:hover,.slot:hover{background:linear-gradient(145deg,rgba(255,255,255,.38),rgba(228,239,242,.18) 22%,rgba(146,164,171,.29) 58%,rgba(46,57,63,.4));border-color:rgba(255,255,255,.58)}
+.service-row{color:#f7f9fa}
+.service-row.selected{color:#222a2e;background:linear-gradient(145deg,rgba(255,255,255,.94),rgba(232,240,242,.87));border-color:rgba(255,255,255,.96);box-shadow:0 10px 19px rgba(12,17,20,.29),inset 0 1px #fff}
+.service-row.selected .service-info small{color:#59656a}
+.service-row.selected .service-icon{background:linear-gradient(145deg,#f7fafb,#d5e0e3);border-color:rgba(65,79,85,.15)}
+.service-row.selected .check{color:#243035;background:linear-gradient(180deg,#fff,#e0eaed);border-color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.25),0 4px 9px rgba(12,17,20,.24),inset 0 1px #fff}
+.calendar-grid button.available{color:#f7fafb;background:linear-gradient(145deg,rgba(241,248,250,.31),rgba(224,237,240,.14) 48%,rgba(68,82,89,.35));border-color:rgba(255,255,255,.38)}
+.calendar-grid button.selected,.slot.selected{color:#222a2e;background:linear-gradient(180deg,#fff,#e0eaed);border-color:#fff}
+.bottom-nav{
+  border:1px solid rgba(248,252,253,.46);
+  background:linear-gradient(145deg,rgba(246,251,252,.36),rgba(205,220,225,.2) 15%,rgba(106,125,133,.43) 48%,rgba(35,44,49,.72));
+  backdrop-filter:blur(34px) saturate(1.35);-webkit-backdrop-filter:blur(34px) saturate(1.35);
+  box-shadow:0 18px 35px rgba(10,15,18,.4),inset 0 1.5px 1px rgba(255,255,255,.95),inset 0 -9px 17px rgba(6,10,12,.36);
+}
+.bottom-nav:before{background:linear-gradient(180deg,rgba(255,255,255,.4),rgba(255,255,255,.1) 44%,transparent);box-shadow:0 1px rgba(255,255,255,.3)}
+.nav-item.active{color:#222a2e;background:linear-gradient(180deg,rgba(255,255,255,.99),rgba(231,239,241,.91));border-color:#fff;box-shadow:0 5px 13px rgba(8,13,16,.32),inset 0 1px #fff}
+.check{flex:0 0 30px;width:30px;height:30px}
+.service-row.selected .check{color:#273136;background:linear-gradient(180deg,#fff,#dce7ea);border-color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.26),0 4px 10px rgba(12,17,20,.26),inset 0 1px #fff}
+
+/* Temporary clear, high-contrast salon backdrop behind the existing glass UI. */
+html{background:#171b1e}
+body{
+  background-color:#171b1e;
+  background-image:linear-gradient(rgba(12,16,19,.42),rgba(12,16,19,.48)),url('assets/salon-3.jfif');
+  background-position:center center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+}
+@media(max-width:699px){body{background-attachment:scroll;background-position:center top}}
+
+/* Full-viewport photo backdrop: the doorway/logo image stays crisp behind the glass. */
+html,body{background:#13171a}
+body{position:relative;isolation:isolate;background:transparent}
+body:before{
+  content:"";position:fixed;z-index:-1;inset:-2px;pointer-events:none;
+  background-image:linear-gradient(rgba(10,14,17,.46),rgba(10,14,17,.46)),url('assets/salon-3.jfif');
+  background-position:center center;background-size:cover;background-repeat:no-repeat;
+  filter:blur(.45px);transform:scale(1.006);
+}
+.app-shell{background:transparent;box-shadow:none}
+.app-shell:before{display:none}
+
+/* Lift the dark theme into a softer mid-graphite range and make glass easier to see. */
+body{background:radial-gradient(ellipse at 50% 4%,#41484d 0,#292e32 42%,#1b1f22 84%)}
+.app-shell{background:radial-gradient(ellipse at 88% 5%,rgba(117,226,212,.085),transparent 24%),linear-gradient(160deg,#343a3e 0%,#282d31 54%,#202427 100%);box-shadow:0 26px 76px #0008,0 0 0 1px rgba(255,255,255,.1),inset 0 1px rgba(255,255,255,.14)}
+.app-shell:before{background:radial-gradient(ellipse at 48% 0%,rgba(255,255,255,.055),transparent 37%),repeating-linear-gradient(135deg,transparent 0 145px,rgba(255,255,255,.016) 146px 147px,transparent 148px 225px)}
+.brand-mark{background:linear-gradient(145deg,rgba(255,255,255,.24),rgba(255,255,255,.07) 48%,rgba(0,0,0,.2));border-color:rgba(238,245,245,.36)}
+.icon-btn{background:linear-gradient(145deg,rgba(255,255,255,.28),rgba(255,255,255,.09) 48%,rgba(0,0,0,.16));border-color:rgba(240,246,247,.3)}
+.welcome-card{background:linear-gradient(100deg,rgba(15,19,21,.88) 0%,rgba(23,29,31,.68) 48%,rgba(20,26,28,.14) 100%),url('assets/salon-1.jfif') center/cover;border-color:rgba(240,247,247,.24)}
+.welcome-photo{filter:saturate(.46) contrast(1.03) brightness(.8);opacity:.88}
+.welcome-card:after{background:linear-gradient(150deg,rgba(255,255,255,.25),rgba(255,255,255,.07) 10%,transparent 28%,transparent 70%,rgba(117,226,212,.055)),radial-gradient(ellipse at 88% 2%,rgba(255,255,255,.19),transparent 32%)}
+.primary-btn,.secondary-btn{background:linear-gradient(145deg,rgba(255,255,255,.34),rgba(232,240,239,.14) 18%,rgba(137,151,151,.18) 52%,rgba(28,34,36,.34));border-color:rgba(244,250,250,.42);box-shadow:0 10px 22px #0006,inset 0 1px 1px rgba(255,255,255,.78),inset 0 -6px 12px rgba(0,0,0,.24)}
+.primary-btn:hover,.secondary-btn:hover{background:linear-gradient(145deg,rgba(117,226,212,.25),rgba(235,245,243,.19) 22%,rgba(137,151,151,.2) 56%,rgba(28,34,36,.3));border-color:rgba(117,226,212,.48)}
+.tile{background:linear-gradient(145deg,rgba(255,255,255,.25),rgba(229,237,236,.105) 18%,rgba(142,154,154,.14) 49%,rgba(27,33,35,.34));border-color:rgba(245,250,249,.25);box-shadow:0 12px 24px #0005,0 1px 0 rgba(255,255,255,.62) inset,0 -1px 0 rgba(0,0,0,.4) inset}
+.tile:before{background:linear-gradient(164deg,rgba(255,255,255,.38),rgba(255,255,255,.1) 12%,rgba(255,255,255,.025) 30%,transparent 56%)}
+.tile:hover{border-color:rgba(117,226,212,.38)}
+.tile small{color:#c9d0d1}
+.mini-card{background:linear-gradient(145deg,rgba(255,255,255,.27),rgba(229,237,236,.11) 18%,rgba(142,154,154,.16) 48%,rgba(27,33,35,.39));border-color:rgba(245,250,249,.27);box-shadow:0 14px 28px #0006,inset 0 1px 1px rgba(255,255,255,.78),inset 0 -9px 16px rgba(0,0,0,.27)}
+.service-row,.calendar-card,.summary-card,.text-card,.price-row,.contact-card,.profile-card{background:linear-gradient(145deg,rgba(255,255,255,.23),rgba(229,237,236,.09) 18%,rgba(142,154,154,.14) 52%,rgba(27,33,35,.38));border-color:rgba(245,250,249,.23);box-shadow:0 11px 23px #0006,inset 0 1px 1px rgba(255,255,255,.68),inset 0 -7px 14px rgba(0,0,0,.28)}
+.service-row.selected{background:linear-gradient(145deg,rgba(117,226,212,.25),rgba(230,244,241,.17) 38%,rgba(60,78,78,.38));border-color:rgba(172,240,229,.56)}
+.service-icon{background:linear-gradient(145deg,rgba(255,255,255,.2),rgba(0,0,0,.2));border-color:rgba(240,246,246,.2)}
+.calendar-card{background:linear-gradient(145deg,rgba(255,255,255,.26),rgba(229,237,236,.1) 18%,rgba(102,119,119,.19) 52%,rgba(27,33,35,.43))}
+.calendar-grid button{background:linear-gradient(145deg,rgba(255,255,255,.19),rgba(255,255,255,.045) 48%,rgba(0,0,0,.22));border-color:rgba(240,247,247,.22)}
+.calendar-grid button.available{background:linear-gradient(145deg,rgba(117,226,212,.2),rgba(255,255,255,.08) 48%,rgba(0,0,0,.18));border-color:rgba(117,226,212,.35)}
+.slot{background:linear-gradient(145deg,rgba(255,255,255,.23),rgba(232,240,239,.09) 45%,rgba(24,30,32,.3));border-color:rgba(237,246,245,.23)}
+.bottom-nav{background:linear-gradient(145deg,rgba(255,255,255,.28),rgba(220,232,230,.1) 18%,rgba(104,119,119,.2) 55%,rgba(24,29,31,.46));border-color:rgba(245,250,249,.28);box-shadow:0 16px 34px #0007,inset 0 1.5px 1px rgba(255,255,255,.78),inset 0 -7px 14px rgba(0,0,0,.3)}
+.nav-item.active{background:linear-gradient(145deg,rgba(117,226,212,.35),rgba(228,242,239,.2) 44%,rgba(103,127,124,.32));border-color:rgba(205,248,241,.48);color:#f5fbfa}
+.check{background:linear-gradient(145deg,rgba(255,255,255,.26),rgba(255,255,255,.075) 48%,rgba(0,0,0,.22));border-color:rgba(239,248,247,.45)}
+.service-row.selected .check{background:linear-gradient(145deg,#dbf8f3 0%,#9adfd4 52%,#6cb9ae 100%);border-color:rgba(222,255,249,.9);box-shadow:0 0 0 3px rgba(117,226,212,.15),0 4px 12px rgba(0,0,0,.3),0 0 15px rgba(117,226,212,.22),inset 0 1px #fff}
+
+/* Final background layer: dim the doorway photo behind, never over, the interface. */
+html{background:#13171a}
+body{position:relative;isolation:isolate;background:#13171a}
+body:before{
+  content:"";position:fixed;z-index:0;inset:-2px;pointer-events:none;
+  background:linear-gradient(rgba(10,14,17,.4),rgba(10,14,17,.4)),url('assets/salon-3.jfif') center center/cover no-repeat;
+  filter:blur(.45px) brightness(.86);transform:scale(1.006);
+}
+.app-shell{position:relative;z-index:1;background:transparent;box-shadow:none}
+.app-shell:before{display:none}
+
+/* Bottom navigation: clear, translucent glass with no background blur. */
+.bottom-nav{
+  background:linear-gradient(155deg,rgba(247,251,252,.22) 0%,rgba(230,240,243,.1) 19%,rgba(162,182,190,.12) 52%,rgba(28,36,41,.28) 100%);
+  border:1px solid rgba(249,253,254,.48);
+  backdrop-filter:none;-webkit-backdrop-filter:none;
+  box-shadow:0 14px 28px rgba(0,0,0,.32),0 1px 0 rgba(255,255,255,.2),inset 0 1.5px 1px rgba(255,255,255,.72),inset 0 -7px 14px rgba(11,17,21,.2);
+}
+.bottom-nav:before{background:linear-gradient(180deg,rgba(255,255,255,.32),rgba(255,255,255,.1) 38%,transparent 82%);box-shadow:inset 0 1px rgba(255,255,255,.28)}
+.bottom-nav:after{display:none}
+.nav-item{backdrop-filter:none;-webkit-backdrop-filter:none}
+.nav-item.active{background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(226,236,239,.78));border-color:rgba(255,255,255,.84);box-shadow:0 4px 11px rgba(0,0,0,.23),inset 0 1px 1px rgba(255,255,255,.95)}
+
+/* Liquid selection pill slides beneath the active tab. */
+.bottom-nav{isolation:isolate}
+.bottom-nav:before{z-index:2;pointer-events:none}
+.bottom-nav:after{
+  content:"";display:block;position:absolute;z-index:1;left:1px;top:7px;
+  width:calc(20% - 2px);height:60px;border-radius:21px;pointer-events:none;
+  background:linear-gradient(155deg,rgba(255,255,255,.98),rgba(242,247,248,.9) 50%,rgba(215,229,232,.84));
+  border:1px solid rgba(255,255,255,.98);
+  box-shadow:0 5px 13px rgba(0,0,0,.27),0 0 12px rgba(230,246,250,.16),inset 0 1px 1px #fff;
+  transform:translateX(var(--active-nav-shift,0%));
+  transition:transform .52s cubic-bezier(.22,1.5,.36,1);
+}
+.nav-item{position:relative;z-index:3;background:transparent;border-color:transparent;box-shadow:none;transition:transform .2s ease,color .2s ease}
+.nav-item.active{color:#252e32;background:transparent;border-color:transparent;box-shadow:none;transform:scale(1.07)}
+
+/* Let the sharp background show through more; keep only a light glass haze. */
+.tile,.mini-card,.service-row,.calendar-card,.summary-card,.text-card,.price-row,.contact-card,.profile-card{
+  backdrop-filter:blur(14px) saturate(1.12);-webkit-backdrop-filter:blur(14px) saturate(1.12);
+  background:linear-gradient(145deg,rgba(239,247,249,.22),rgba(219,231,234,.08) 20%,rgba(135,152,159,.16) 56%,rgba(73,85,91,.24));
+}
+.primary-btn,.secondary-btn,.icon-btn,.slot,.calendar-grid button{
+  backdrop-filter:blur(12px) saturate(1.12);-webkit-backdrop-filter:blur(12px) saturate(1.12);
+  background:linear-gradient(145deg,rgba(248,252,253,.24),rgba(224,237,240,.09) 22%,rgba(126,145,153,.16) 58%,rgba(46,57,63,.28));
+}
+.service-row.selected{background:linear-gradient(145deg,rgba(255,255,255,.76),rgba(232,240,242,.64));}
+
+/* Shared indicator positions; :has keeps the slide in sync with the active tab. */
+.bottom-nav:has(.nav-item:nth-child(2).active):after{transform:translateX(100%)}
+.bottom-nav:has(.nav-item:nth-child(3).active):after{transform:translateX(200%)}
+.bottom-nav:has(.nav-item:nth-child(4).active):after{transform:translateX(300%)}
+.bottom-nav:has(.nav-item:nth-child(5).active):after{transform:translateX(400%)}
+
+/* A little more transparency and less blur across the frosted panels. */
+.tile,.mini-card,.service-row,.calendar-card,.summary-card,.text-card,.price-row,.contact-card,.profile-card{
+  backdrop-filter:blur(10px) saturate(1.08);-webkit-backdrop-filter:blur(10px) saturate(1.08);
+  background:linear-gradient(145deg,rgba(239,247,249,.18),rgba(219,231,234,.06) 20%,rgba(135,152,159,.12) 56%,rgba(73,85,91,.2));
+}
+.primary-btn,.secondary-btn,.icon-btn,.slot,.calendar-grid button{
+  backdrop-filter:blur(8px) saturate(1.08);-webkit-backdrop-filter:blur(8px) saturate(1.08);
+  background:linear-gradient(145deg,rgba(248,252,253,.2),rgba(224,237,240,.07) 22%,rgba(126,145,153,.12) 58%,rgba(46,57,63,.23));
+}
+
+/* The moving tab marker should read as a frosted tile, not a bright spot. */
+.bottom-nav:after{
+  background:linear-gradient(145deg,rgba(245,250,251,.42),rgba(223,234,237,.22) 45%,rgba(123,144,152,.35));
+  border-color:rgba(255,255,255,.46);
+  backdrop-filter:blur(8px) saturate(1.12);-webkit-backdrop-filter:blur(8px) saturate(1.12);
+  box-shadow:0 5px 12px rgba(0,0,0,.2),inset 0 1px 1px rgba(255,255,255,.8),inset 0 -4px 8px rgba(37,52,59,.13);
+}
+
+/* Restore the earlier clear-glass tile finish on the moving indicator. */
+.bottom-nav:after{
+  border-radius:18px;
+  background:
+    linear-gradient(160deg,rgba(255,255,255,.28),rgba(255,255,255,.07) 32%,transparent 72%),
+    linear-gradient(145deg,rgba(239,247,249,.18),rgba(219,231,234,.06) 20%,rgba(135,152,159,.12) 56%,rgba(73,85,91,.2));
+  border-color:rgba(246,252,253,.46);
+  backdrop-filter:blur(8px) saturate(1.12);-webkit-backdrop-filter:blur(8px) saturate(1.12);
+  box-shadow:0 5px 13px rgba(0,0,0,.22),0 0 0 1px rgba(255,255,255,.06),inset 0 1px 1px rgba(255,255,255,.85),inset 0 -5px 10px rgba(22,32,37,.16);
+}
+
+/* Match the outlined, smoky glass tab from the reference image. */
+.bottom-nav:after{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.045) 38%,transparent 72%),
+    linear-gradient(145deg,rgba(212,222,224,.29),rgba(152,168,171,.2) 52%,rgba(99,112,116,.26));
+  border-color:rgba(247,252,252,.76);
+  box-shadow:0 3px 9px rgba(0,0,0,.2),inset 0 1px 1px rgba(255,255,255,.75),inset 0 -2px 5px rgba(24,31,34,.14);
+}
+.nav-item.active{color:#f7fbfb}
+
+/* Slightly brighter backdrop; clearer, less blurred glass on content tiles. */
+body:before{filter:blur(.45px) brightness(.98)}
+.tile,.mini-card,.service-row,.calendar-card,.summary-card,.text-card,.price-row,.contact-card,.profile-card{
+  backdrop-filter:blur(6px) saturate(1.1);-webkit-backdrop-filter:blur(6px) saturate(1.1);
+  background:linear-gradient(145deg,rgba(239,247,249,.22),rgba(219,231,234,.09) 20%,rgba(135,152,159,.15) 56%,rgba(73,85,91,.18));
+}
+.bottom-nav:before{z-index:0}
+.bottom-nav:after{z-index:1}
+
+/* The active tab should be plainly visible like the reference: a smoky tile with a crisp rim. */
+.bottom-nav:after{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.035) 42%,transparent 75%),
+    linear-gradient(145deg,rgba(210,222,224,.43),rgba(155,171,174,.34) 55%,rgba(104,119,123,.39));
+  border:1px solid rgba(255,255,255,.94);
+  box-shadow:0 2px 7px rgba(0,0,0,.22),inset 0 1px 1px rgba(255,255,255,.8),inset 0 -2px 5px rgba(28,37,40,.15);
+}
+.bottom-nav:after{display:none!important}
+.nav-glass-highlight{
+  position:absolute;z-index:2;left:1px;top:6px;width:calc(20% - 2px);height:60px;
+  border:1px solid rgba(255,255,255,.94);border-radius:19px;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.035) 42%,transparent 75%),linear-gradient(145deg,rgba(210,222,224,.43),rgba(155,171,174,.34) 55%,rgba(104,119,123,.39));
+  box-shadow:0 2px 7px rgba(0,0,0,.22),inset 0 1px 1px rgba(255,255,255,.8),inset 0 -2px 5px rgba(28,37,40,.15);
+  transform:translateX(var(--active-nav-shift,0%));transition:transform .52s cubic-bezier(.22,1.5,.36,1);
+}
+.bottom-nav:has(.nav-item:nth-of-type(2).active) .nav-glass-highlight{transform:translateX(100%)}
+.bottom-nav:has(.nav-item:nth-of-type(3).active) .nav-glass-highlight{transform:translateX(200%)}
+.bottom-nav:has(.nav-item:nth-of-type(4).active) .nav-glass-highlight{transform:translateX(300%)}
+.bottom-nav:has(.nav-item:nth-of-type(5).active) .nav-glass-highlight{transform:translateX(400%)}
+.nav-item.active{color:#f7fbfb}
+
+.topbar{justify-content:center}.brand-copy{text-align:center}.brand-name{font-size:18px;letter-spacing:.03em}.welcome-card h1,.page-title h1{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:-.02em}.edit-booking-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.contact-card{color:inherit;text-decoration:none}.copy-phone{margin-left:auto;border:1px solid rgba(255,255,255,.4);border-radius:12px;background:rgba(255,255,255,.12);color:inherit;padding:9px 12px}.contact-card>div:nth-child(2){flex:1}
+
+.welcome-card h1,.page-title h1,.mini-card h3,.section-head h2{font-family:'Trebuchet MS','Avenir Next',sans-serif;letter-spacing:-.025em;font-weight:650}.mini-card p{font-size:14px;line-height:1.7;margin:8px 0 0}.mini-card p strong{white-space:nowrap}
+
+.brand-name{display:flex;flex-direction:column;align-items:center;gap:3px;font-family:Georgia,'Times New Roman',serif;font-weight:900;letter-spacing:.1em;line-height:1;color:#fff}.brand-name>span{font-size:20px;text-shadow:0 2px 8px #0008}.brand-name>small{position:relative;padding:3px 12px 2px;font:700 9px/1.1 'Trebuchet MS',sans-serif;letter-spacing:.32em;border:1px solid rgba(238,216,174,.8);border-radius:4px;color:#f0dfbe}.brand-name>small:before,.brand-name>small:after{content:'';position:absolute;top:50%;width:5px;height:13px;transform:translateY(-50%);background:repeating-linear-gradient(135deg,#d9d4c5 0 3px,#a64036 3px 6px,#d9d4c5 6px 9px,#416c8e 9px 12px)}.brand-name>small:before{left:-8px}.brand-name>small:after{right:-8px}
+
+.brand-name>small{font:900 13px/1 Georgia,'Times New Roman',serif;letter-spacing:.14em;padding:4px 14px 3px;color:#fff}.brand-name>small:before,.brand-name>small:after{width:7px;height:18px;background:repeating-linear-gradient(135deg,#f6f3eb 0 4px,#bd3d39 4px 8px,#f6f3eb 8px 12px)}
+
+.brand-name{flex-direction:row;gap:8px}.brand-name>span,.brand-name>small{font:900 19px/1 Georgia,'Times New Roman',serif;letter-spacing:.08em;color:#fff;text-shadow:0 2px 8px #0008;padding:0;border:0;border-radius:0}.brand-name>small:before,.brand-name>small:after{display:none}.brand-name:after{content:'';display:block;order:1;width:9px;height:26px;border-radius:2px;background:repeating-linear-gradient(135deg,#f6f3eb 0 5px,#bd3d39 5px 10px,#f6f3eb 10px 15px);box-shadow:0 1px 5px #0008}.brand-name>span{order:0}.brand-name>small{order:2}.page-title h1{font-family:Georgia,'Times New Roman',serif!important;font-size:30px;font-weight:800!important;letter-spacing:-.025em!important;text-shadow:0 2px 8px #0007}
+
+.brand-name:after{display:none!important}.welcome-card h1{font-family:Georgia,'Times New Roman',serif!important;font-size:36px;font-weight:800!important;letter-spacing:-.025em!important;text-shadow:0 2px 8px #0008}
+
+.welcome-photo{mask-image:none!important;-webkit-mask-image:none!important;clip-path:polygon(19% 0,100% 0,100% 100%,0 100%);opacity:1;filter:saturate(.8) contrast(1.08) brightness(.82)}
+
+body:after{content:'';position:fixed;z-index:9;left:0;right:0;bottom:0;height:132px;pointer-events:none;background:linear-gradient(180deg,transparent 0%,rgba(13,17,19,.12) 55%,rgba(13,17,19,.24) 100%)}.bottom-nav{z-index:10}
+
+body:after{inset:0;height:auto;z-index:9;pointer-events:none;background:linear-gradient(180deg,rgba(13,17,19,.22),rgba(13,17,19,.22)),url('assets/salon-3.jfif') center center/cover no-repeat;filter:blur(.45px) brightness(.86);clip-path:inset(calc(100% - 100px) 0 0 0)}.bottom-nav{z-index:10}
+
+body:after{display:none!important}.app-shell:after{content:'';display:block;position:fixed;z-index:8;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(13,17,19,.22),rgba(13,17,19,.22)),url('assets/salon-3.jfif') center center/cover no-repeat;filter:blur(.45px) brightness(.86);clip-path:inset(calc(100% - 100px) 0 0 0)}.bottom-nav{z-index:10}
+
+.app-shell:after{background:linear-gradient(rgba(10,14,17,.4),rgba(10,14,17,.4)),url('assets/salon-3.jfif') center center/cover no-repeat;filter:blur(.45px) brightness(.86);clip-path:none;mask-image:linear-gradient(to bottom,transparent calc(100% - 120px),#000 calc(100% - 86px));-webkit-mask-image:linear-gradient(to bottom,transparent calc(100% - 120px),#000 calc(100% - 86px))}
+
+.section-head h2{font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:800;letter-spacing:-.02em}.welcome-content .eyebrow{color:#f5f4ee!important}
+
+.view{animation:none!important;opacity:1!important;transform:none!important}
+
+/* Mobile safe space: keep page actions reachable above the fixed navigation. */
+.screen{padding-bottom:190px}
+.slots{row-gap:14px;column-gap:12px;margin-bottom:24px}
+#to-confirm{margin-top:10px;margin-bottom:34px}
+.edit-booking-actions{gap:14px;margin-bottom:30px}
+.bottom-nav{box-sizing:border-box;width:min(calc(100vw - 32px),454px);height:72px;padding:5px 4px;gap:0}
+.nav-item{box-sizing:border-box;flex:0 0 20%;width:20%;min-width:0;height:60px;padding:0 2px;gap:4px}
+.nav-item span{line-height:1}
+.nav-item small{white-space:nowrap;font-size:10px}
+.nav-glass-highlight{width:calc(20% - 4px);height:60px;top:5px;left:2px}
+.view .primary-btn.full{margin-top:16px;margin-bottom:30px}
+
+/* Keep the fixed menu attached to the phone viewport during iOS overscroll. */
+@media(max-width:699px){
+  html,body{overflow-x:clip}
+  .app-shell{overflow:visible}
+  .bottom-nav{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);transform:translate3d(-50%,0,0);-webkit-transform:translate3d(-50%,0,0)}
+}
+
+/* Align the moving glass tile exactly with each menu column. */
+.nav-glass-highlight{left:calc(4px + var(--active-nav-shift,0%));width:calc(20% - 8px);transform:none!important;transition:left .52s cubic-bezier(.22,1.5,.36,1)}
+
+/* Keep image borders and shadows inside the photo edges. */
+.photo-stack img,.wide-photo,.gallery-grid img{box-sizing:border-box;display:block;max-width:100%;}
+
+/* Keep the navigation fixed and on top on both desktop and mobile viewports. */
+.bottom-nav{position:fixed!important;z-index:50!important;bottom:calc(env(safe-area-inset-bottom,0px) + 12px)!important;}
+
+/* Customer accounts and bookings */
+[hidden]{display:none!important}
+.auth-card,.account-edit-card{padding:20px;margin:14px 0}
+.auth-intro{line-height:1.55;color:rgba(255,255,255,.78)}
+.auth-switch{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
+.auth-switch-btn{min-height:44px}
+.auth-switch-btn.active{background:rgba(225,244,248,.3);border-color:rgba(238,250,252,.85);box-shadow:inset 0 1px 2px #fff7,0 4px 12px #0003}
+.auth-form{display:grid;gap:13px;margin-top:14px}
+.auth-field{display:grid;gap:7px;font-size:14px;font-weight:650;color:rgba(255,255,255,.92)}
+.auth-field input{box-sizing:border-box;width:100%;min-height:48px;padding:12px 14px;border:1px solid rgba(255,255,255,.38);border-radius:14px;background:rgba(12,17,20,.28);color:#fff;font:inherit;outline:none;backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
+.auth-field input:focus{border-color:rgba(190,235,246,.95);box-shadow:0 0 0 3px rgba(169,224,237,.18)}
+.auth-field input::placeholder{color:rgba(255,255,255,.58)}
+.text-link{display:block;margin:13px auto 0;padding:8px 10px;border:0;background:transparent;color:#d4f1f8;text-decoration:underline;text-underline-offset:3px;font:inherit;cursor:pointer}
+.form-message{min-height:1.4em;margin:12px 0 0;line-height:1.45;color:#e8f5f6}
+.form-message.is-error{color:#ffd3d0}.form-message.is-success{color:#d7ffe8}
+.profile-card{display:flex;align-items:center;gap:14px;padding:16px;margin:10px 0;border:1px solid rgba(255,255,255,.25);border-radius:18px;background:rgba(215,230,233,.18);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.profile-card>div:last-child{display:grid;gap:4px;min-width:0}.profile-card strong{overflow-wrap:anywhere}.profile-card small{color:rgba(255,255,255,.72)}
+.avatar{display:grid;place-items:center;flex:0 0 44px;height:44px;border-radius:50%;background:rgba(255,255,255,.19);font-size:23px}
+.my-bookings{display:grid;gap:12px}.account-booking{padding:14px;border:1px solid rgba(255,255,255,.24);border-radius:16px;background:rgba(15,20,22,.2)}
+.account-booking p{margin:8px 0;line-height:1.45}.account-booking small{color:rgba(255,255,255,.75)}
+.cancel-booking{margin-top:12px}.booking-success{color:#d7ffe8}
+.contact-card{gap:12px}
+@media(max-width:380px){.auth-card,.account-edit-card{padding:16px}.auth-switch{gap:7px}}
+

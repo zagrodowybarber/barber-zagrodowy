@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#3c444b">
+  <title>Barber Zagrodowy</title>
+  <link rel="stylesheet" href="style.css?v=accounts-1">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-copy">
+        <div class="brand-name"><span>BARBER</span><small>ZAGRODOWY</small></div>
+      </div>
+    </header>
+
+    <main id="screen" class="screen">
+      <section class="home-screen view active" data-view="home">
+        <div class="welcome-card">
+          <div class="welcome-content">
+            <p class="eyebrow">Witaj w salonie</p>
+            <h1>Barber Zagrodowy</h1>
+            <p class="muted">Umów wizytę w salonie.</p>
+            <button class="primary-btn" data-go="booking"><span>▣</span> Rezerwuj wizytę</button>
+          </div>
+          <div class="welcome-photo"></div>
+        </div>
+
+        <div class="section-head"><h2>Co znajdziesz u nas?</h2><span class="dots">•••</span></div>
+        <div class="tiles">
+          <button class="tile" data-go="services"><span class="tile-icon">✂</span><strong>Usługi i cennik</strong><small>Sprawdź ofertę</small></button>
+          <button class="tile" data-go="about"><span class="tile-icon">♙</span><strong>O nas</strong><small>Poznaj salon</small></button>
+          <button class="tile" data-go="gallery"><span class="tile-icon">▧</span><strong>Galeria</strong><small>Zobacz wnętrze</small></button>
+          <button class="tile" data-go="contact"><span class="tile-icon">⌕</span><strong>Kontakt</strong><small>Znajdź nas</small></button>
+        </div>
+        <div class="mini-card">
+          <div><h3>Godziny otwarcia</h3><p>Poniedziałek–piątek <strong>10:00–19:00</strong><br>Sobota <strong>10:00–16:30</strong></p></div>
+          <div class="mini-icon">◷</div>
+        </div>
+      </section>
+
+      <section class="view" data-view="booking">
+        <div class="page-title"><h1>Rezerwacja</h1></div>
+        <div class="steps"><span class="step active">1 <small>Usługi</small></span><i></i><span class="step">2 <small>Termin</small></span><i></i><span class="step">3 <small>Podsumowanie</small></span></div>
+        <h2>Wybierz usługi</h2>
+        <div id="service-list" class="service-list"></div>
+        <div class="booking-summary"><span id="summary-label">Wybierz przynajmniej jedną usługę</span><strong id="summary-total">0 zł · 0 min</strong></div>
+        <button class="primary-btn full" id="to-calendar" disabled>Wybierz termin <span>→</span></button>
+      </section>
+
+      <section class="view" data-view="calendar">
+        <div class="page-title"><h1>Wybierz termin</h1></div>
+        <div class="calendar-card">
+          <div class="month-row"><button class="icon-btn" id="prev-month">‹</button><strong id="month-label"></strong><button class="icon-btn" id="next-month">›</button></div>
+          <div class="weekdays"><span>P</span><span>W</span><span>Ś</span><span>C</span><span>P</span><span>S</span><span>N</span></div>
+          <div id="calendar-grid" class="calendar-grid"></div>
+        </div>
+        <h2 id="chosen-date-title">Wybierz dzień</h2>
+        <div id="slots" class="slots"></div>
+        <button class="primary-btn full" id="to-confirm" disabled>Podsumowanie <span>→</span></button>
+      </section>
+
+      <section class="view" data-view="confirm">
+        <div class="page-title"><h1>Podsumowanie</h1></div>
+        <div class="summary-card" id="confirmation-summary"></div>
+        <button class="primary-btn full" id="demo-confirm">Zarezerwuj wizytę</button>
+        <p class="form-message" id="booking-message" role="status" aria-live="polite"></p>
+        <div class="edit-booking-actions" id="edit-booking-actions"><button class="secondary-btn" id="edit-services">Zmień usługi</button><button class="secondary-btn" id="edit-date">Zmień termin</button></div>
+      </section>
+
+      <section class="view" data-view="services">
+        <div class="page-title"><h1>Usługi i cennik</h1></div>
+        <div id="price-list" class="price-list"></div>
+        <button class="primary-btn full" data-go="booking">Rezerwuj wizytę</button>
+      </section>
+
+      <section class="view" data-view="about">
+        <div class="page-title"><h1>O nas</h1></div>
+        <div class="photo-stack"><img src="assets/salon-2.jfif" alt="Fotel barberski w salonie"></div>
+        <div class="text-card"><h2>Barber Zagrodowy</h2><p>Przestrzeń, w której możesz usiąść, odpocząć i zadbać o swój wygląd. Na razie prezentujemy zdjęcia salonu — opis i szczegóły uzupełnimy później.</p></div>
+        <img class="wide-photo" src="assets/salon-4.jfif" alt="Logo salonu">
+      </section>
+
+      <section class="view" data-view="gallery">
+        <div class="page-title"><h1>Galeria</h1></div>
+        <div class="gallery-grid">
+          <img src="assets/salon-1.jfif" alt="Salon barberski">
+          <img src="assets/salon-2.jfif" alt="Fotel barberski">
+          <img src="assets/salon-3.jfif" alt="Wejście do salonu">
+          <img src="assets/salon-4.jfif" alt="Logo Barber Zagrodowy">
+        </div>
+      </section>
+
+      <section class="view" data-view="contact">
+        <div class="page-title"><h1>Kontakt</h1></div>
+        <div class="contact-card"><div class="contact-icon">☎</div><div><small>Telefon</small><strong>505 975 102</strong></div><button class="copy-phone" type="button" onclick="navigator.clipboard.writeText('505975102').then(()=>{this.textContent='Skopiowano';setTimeout(()=>this.textContent='Kopiuj',1600)})">Kopiuj</button></div>
+        <a class="contact-card" href="https://www.instagram.com/barber_zagrodowy/?hl=en" target="_blank" rel="noopener"><div class="contact-icon">◎</div><div><small>Instagram</small><strong>@barber_zagrodowy</strong></div></a>
+        <a class="contact-card" href="https://www.google.com/maps/search/?api=1&query=Ch%C5%82apowo%2C+ul.+Zagrodowa+8"><div class="contact-icon">📍</div><div><small>Adres</small><strong>Chłapowo, ul. Zagrodowa 8</strong></div></a>
+      </section>
+
+      <section class="view" data-view="profile">
+        <div class="page-title"><h1>Mój profil</h1></div>
+        <div class="text-card auth-card" id="auth-panel">
+          <h2 id="auth-heading">Zaloguj się</h2>
+          <p class="auth-intro">Zaloguj się, aby rezerwować wizyty. Jedno konto może mieć jedną aktywną, przyszłą rezerwację.</p>
+          <div class="auth-switch" role="group" aria-label="Wybór logowania">
+            <button class="secondary-btn auth-switch-btn active" type="button" data-auth-mode="login">Logowanie</button>
+            <button class="secondary-btn auth-switch-btn" type="button" data-auth-mode="signup">Utwórz konto</button>
+          </div>
+          <form id="auth-form" class="auth-form">
+            <label class="auth-field" id="auth-name-field">Imię i nazwisko<input id="auth-name" name="name" autocomplete="name" minlength="2" maxlength="100"></label>
+            <label class="auth-field" id="auth-phone-field">Numer telefonu<input id="auth-phone" name="phone" type="tel" autocomplete="tel" minlength="7" maxlength="30"></label>
+            <label class="auth-field">E-mail<input id="auth-email" name="email" type="email" autocomplete="email" required></label>
+            <label class="auth-field">Hasło<input id="auth-password" name="password" type="password" autocomplete="current-password" minlength="8" required></label>
+            <button class="primary-btn full" id="auth-submit" type="submit">Zaloguj się</button>
+          </form>
+          <form id="reset-password-form" class="auth-form" hidden>
+            <label class="auth-field">Nowe hasło<input id="new-password" name="password" type="password" autocomplete="new-password" minlength="8" required></label>
+            <button class="primary-btn full" type="submit">Zapisz nowe hasło</button>
+          </form>
+          <button class="text-link" id="forgot-password" type="button">Nie pamiętam hasła</button>
+          <button class="text-link" id="resend-confirmation" type="button" hidden>Wyślij ponownie link potwierdzający</button>
+          <p class="form-message" id="auth-message" role="status" aria-live="polite"></p>
+        </div>
+        <div id="account-panel" hidden>
+          <div class="profile-card"><div class="avatar">♙</div><div><strong id="profile-email"></strong><small id="profile-name"></small></div></div>
+          <div class="text-card account-edit-card">
+            <h2>Dane kontaktowe</h2>
+            <form id="profile-edit-form" class="auth-form">
+              <label class="auth-field">Imię i nazwisko<input id="profile-edit-name" name="name" autocomplete="name" minlength="2" maxlength="100" required></label>
+              <label class="auth-field">Numer telefonu<input id="profile-edit-phone" name="phone" type="tel" autocomplete="tel" minlength="7" maxlength="30" required></label>
+              <button class="secondary-btn full" type="submit">Zapisz dane</button>
+            </form>
+            <p class="form-message" id="profile-message" role="status" aria-live="polite"></p>
+          </div>
+          <div class="text-card"><h2>Moje rezerwacje</h2><div id="my-bookings" class="my-bookings"><p>Sprawdzam rezerwacje…</p></div></div>
+          <button class="primary-btn full" data-go="booking">+ Nowa rezerwacja</button>
+          <button class="secondary-btn full" id="sign-out" type="button">Wyloguj się</button>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Menu">
+      <span class="nav-glass-highlight" aria-hidden="true"></span>
+      <button class="nav-item active" data-go="home"><span>⌂</span><small>Start</small></button>
+      <button class="nav-item" data-go="booking"><span>▦</span><small>Rezerwuj</small></button>
+      <button class="nav-item" data-go="services"><span>✂</span><small>Usługi</small></button>
+      <button class="nav-item" data-go="gallery"><span>▧</span><small>Galeria</small></button>
+      <button class="nav-item" data-go="profile"><span>♙</span><small>Profil</small></button>
+    </nav>
+  </div>
+  <script src="supabase-config.js?v=accounts-1"></script>
+  <script type="module" src="script.js?v=accounts-1"></script>
+</body>
+</html>
