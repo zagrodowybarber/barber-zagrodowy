@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#3c444b">
-  <title>Barber Zagrodowy</title>
-  <link rel="stylesheet" href="style.css?v=accounts-1">
+  <title>Barber Zagrodowy</title>  <link rel="stylesheet" href="style.css?v=accounts-1">
+  <link rel="stylesheet" href="welcome-slideshow.css?v=1">
 </head>
 <body>
   <div class="app-shell">
@@ -23,8 +23,22 @@
             <h1>Barber Zagrodowy</h1>
             <p class="muted">Umów wizytę w salonie.</p>
             <button class="primary-btn" data-go="booking"><span>▣</span> Rezerwuj wizytę</button>
+          </div>          <div class="welcome-photo" aria-label="Zdjęcia salonu">
+            <div class="welcome-slides" aria-live="polite">
+              <img class="welcome-slide active" src="assets/salon-1.jfif" alt="Wnętrze salonu Barber Zagrodowy">
+              <img class="welcome-slide" src="assets/salon-2.jfif" alt="Fotel barberski w salonie">
+              <img class="welcome-slide" src="assets/salon-3.jfif" alt="Wejście do salonu Barber Zagrodowy">
+            </div>
+            <div class="welcome-slide-controls" aria-label="Sterowanie pokazem zdjęć">
+              <button class="welcome-slide-arrow" type="button" data-slide-step="-1" aria-label="Poprzednie zdjęcie">‹</button>
+              <div class="welcome-slide-dots" aria-label="Wybierz zdjęcie">
+                <button class="welcome-slide-dot active" type="button" data-slide-to="0" aria-label="Zdjęcie 1" aria-current="true"></button>
+                <button class="welcome-slide-dot" type="button" data-slide-to="1" aria-label="Zdjęcie 2"></button>
+                <button class="welcome-slide-dot" type="button" data-slide-to="2" aria-label="Zdjęcie 3"></button>
+              </div>
+              <button class="welcome-slide-arrow" type="button" data-slide-step="1" aria-label="Następne zdjęcie">›</button>
+            </div>
           </div>
-          <div class="welcome-photo"></div>
         </div>
 
         <div class="section-head"><h2>Co znajdziesz u nas?</h2><span class="dots">•••</span></div>
@@ -150,7 +164,7 @@
       <button class="nav-item" data-go="profile"><span>♙</span><small>Profil</small></button>
     </nav>
   </div>
-  <script src="supabase-config.js?v=accounts-1"></script>
-  <script type="module" src="script.js?v=accounts-1"></script>
+  <script src="supabase-config.js?v=accounts-1"></script>  <script type="module" src="script.js?v=accounts-1"></script>
+  <script type="module" src="welcome-slideshow.js?v=1"></script>
 </body>
 </html>
