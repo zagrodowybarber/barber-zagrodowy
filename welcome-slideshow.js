@@ -4,6 +4,7 @@ const dots = [...document.querySelectorAll(".welcome-slide-dot")];
 
 if (carousel && slides.length > 1 && dots.length === slides.length) {
   let activeSlide = 0;
+  let manualPauseUntil = 0;
 
   const showSlide = (index) => {
     activeSlide = (index + slides.length) % slides.length;
@@ -17,13 +18,19 @@ if (carousel && slides.length > 1 && dots.length === slides.length) {
   };
 
   carousel.querySelectorAll("[data-slide-step]").forEach((button) => {
-    button.addEventListener("click", () => showSlide(activeSlide + Number(button.dataset.slideStep)));
+    button.addEventListener("click", () => {
+      showSlide(activeSlide + Number(button.dataset.slideStep));
+      manualPauseUntil = Date.now() + 12000;
+    });
   });
-  dots.forEach((dot) => dot.addEventListener("click", () => showSlide(Number(dot.dataset.slideTo))));
+  dots.forEach((dot) => dot.addEventListener("click", () => {
+    showSlide(Number(dot.dataset.slideTo));
+    manualPauseUntil = Date.now() + 12000;
+  }));
 
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     window.setInterval(() => {
-      if (!document.hidden && !carousel.matches(":hover, :focus-within")) showSlide(activeSlide + 1);
+      if (Date.now() >= manualPauseUntil && !document.hidden && !carousel.matches(":hover, :focus-within")) showSlide(activeSlide + 1);
     }, 5000);
   }
 }
