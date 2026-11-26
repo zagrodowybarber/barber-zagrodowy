@@ -4,17 +4,17 @@ const services = [
   { id: "haircut", name: "Strzyżenie włosów", price: 70, duration: 40, time: "40 min", icon: "✂" },
   { id: "beard", name: "Strzyżenie brody", price: 50, duration: 25, time: "10–25 min", icon: "♟" },
   { id: "combo", name: "Strzyżenie combo", price: 120, duration: 60, time: "60 min", icon: "✂" },
-  { id: "brows", name: "Regulacja brwi", price: 10, duration: 0, time: "", icon: "◉" },
+  { id: "brows", name: "Regulacja brwi", price: 10, duration: 5, time: "5 min" },
   { id: "shave", name: "Golenie", price: 40, duration: 10, time: "10 min", icon: "▱" },
-  { id: "wash", name: "Mycie głowy", price: 10, duration: 5, time: "5 min", icon: "♨" },
-  { id: "nose-wax", name: "Depilacja włosów z nosa woskiem", price: 10, duration: 5, time: "5 min", promo: "Pierwszy raz gratis", icon: "✦" },
-  { id: "wax", name: "Depilacja woskiem", price: null, duration: 5, time: "5 min", icon: "✦" }
+  { id: "wash", name: "Mycie głowy", price: 10, duration: 0, time: "" },
+  { id: "nose-wax", name: "Depilacja nosa woskiem", price: 10, duration: 5, time: "5 min", promo: "Pierwszy raz gratis" }
+
 ];
 
 let selectedServices = [];
 let selectedDate = null;
 let selectedSlot = null;
-let monthOffset = 0;
+const MAX_BOOKING_MONTH_OFFSET = 1;let monthOffset = 0;
 let busySlots = [];
 let supabase = null;
 let currentUser = null;
@@ -67,7 +67,7 @@ function renderServices() {
     const row = document.createElement("button");
     row.type = "button";
     row.className = `service-row${selectedServices.includes(index) ? " selected" : ""}`;
-    row.innerHTML = `<div class="service-icon">${service.icon}</div><div class="service-info"><strong>${service.name}</strong><small>${service.price === null ? "—" : `${service.price} zł`}${service.time ? ` · ${service.time}` : ""}${service.promo ? ` · ${service.promo}` : ""}</small></div><div class="check">${selectedServices.includes(index) ? "✓" : ""}</div>`;
+    row.innerHTML = `<div class="service-info"><strong>${service.name}</strong><small>${service.price === null ? "—" : `${service.price} zł`}${service.time ? ` · ${service.time}` : ""}${service.promo ? ` · ${service.promo}` : ""}</small></div><div class="check">${selectedServices.includes(index) ? "✓" : ""}</div>`;
     row.addEventListener("click", () => {
       selectedServices = selectedServices.includes(index) ? selectedServices.filter((item) => item !== index) : [...selectedServices, index];
       renderServices();
@@ -432,7 +432,7 @@ function renderCalendar() {
   const month = new Date(now.getFullYear(), now.getMonth() + monthOffset, 1);
   $("#month-label").textContent = month.toLocaleDateString("pl-PL", { month: "long", year: "numeric" });
   $("#prev-month").disabled = monthOffset === 0;
-  $("#next-month").disabled = monthOffset >= 1;
+  $("#next-month").disabled = monthOffset >= MAX_BOOKING_MONTH_OFFSET;
   const grid = $("#calendar-grid");
   grid.replaceChildren();
   const firstDay = (month.getDay() + 6) % 7;
@@ -469,7 +469,7 @@ $("#prev-month").addEventListener("click", () => {
   }
 });
 $("#next-month").addEventListener("click", () => {
-  if (monthOffset < 1) {
+  if (monthOffset < MAX_BOOKING_MONTH_OFFSET) {
     monthOffset += 1;
     renderCalendar();
   }
@@ -483,7 +483,7 @@ function buildSlotTimes(date, duration) {
   const closingMinutes = date.getDay() === 6 ? 16 * 60 + 30 : 19 * 60;
   const openingMinutes = 10 * 60;
   const slots = [];
-  for (let minutes = openingMinutes; minutes + duration <= closingMinutes; minutes += 45) {
+  const blockDuration = duration <= 35 ? 30 : duration <= 65 ? 60 : Math.ceil((duration - 5) / 30) * 30;  const interval = blockDuration <= 30 ? 30 : 60;  for (let minutes = openingMinutes; minutes + blockDuration <= closingMinutes; minutes += interval) {
     const hours = String(Math.floor(minutes / 60)).padStart(2, "0");
     const rest = String(minutes % 60).padStart(2, "0");
     slots.push(`${hours}:${rest}`);
@@ -493,7 +493,7 @@ function buildSlotTimes(date, duration) {
 
 function overlapsBusySlot(slotTime, duration, busy) {
   const start = slotTime.split(":").reduce((hours, value) => hours * 60 + Number(value), 0);
-  const end = start + duration;
+  const blockDuration = duration <= 35 ? 30 : duration <= 65 ? 60 : Math.ceil((duration - 5) / 30) * 30;  const end = start + blockDuration;
   return busy.some((item) => {
     const itemTime = String(item.booking_time).slice(0, 5);
     const busyStart = itemTime.split(":").reduce((hours, value) => hours * 60 + Number(value), 0);
