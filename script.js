@@ -611,3 +611,26 @@ renderServices();
 renderPrices();
 setAuthMode("login");
 initSupabase();
+
+const galleryImages = [...document.querySelectorAll(".gallery-grid img")];
+if (galleryImages.length) {
+  const viewer = document.createElement("div");
+  viewer.className = "gallery-lightbox";
+  viewer.hidden = true;
+  viewer.setAttribute("role", "dialog");
+  viewer.setAttribute("aria-modal", "true");
+  viewer.setAttribute("aria-label", "Podgląd zdjęcia z galerii");
+  viewer.innerHTML = '<button class="gallery-lightbox-back" type="button">← Powrót</button><button class="gallery-lightbox-arrow gallery-lightbox-prev" aria-label="Poprzednie zdjęcie">‹</button><figure class="gallery-lightbox-figure"><img class="gallery-lightbox-image" alt=""><figcaption class="gallery-lightbox-count"></figcaption></figure><button class="gallery-lightbox-arrow gallery-lightbox-next" aria-label="Następne zdjęcie">›</button>';
+  document.body.append(viewer);
+  const image = viewer.querySelector(".gallery-lightbox-image"), count = viewer.querySelector(".gallery-lightbox-count");
+  let active = 0;
+  const show = (index) => { active = (index + galleryImages.length) % galleryImages.length; image.src = galleryImages[active].src; image.alt = galleryImages[active].alt; count.textContent = (active + 1) + " / " + galleryImages.length; viewer.hidden = false; document.body.classList.add("gallery-lightbox-open"); };
+  const close = () => { viewer.hidden = true; document.body.classList.remove("gallery-lightbox-open"); };
+  galleryImages.forEach((photo, index) => { photo.tabIndex = 0; photo.setAttribute("role", "button"); photo.addEventListener("click", () => show(index)); photo.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); show(index); } }); });
+  viewer.querySelector(".gallery-lightbox-back").addEventListener("click", close);
+  viewer.querySelector(".gallery-lightbox-prev").addEventListener("click", () => show(active - 1));
+  viewer.querySelector(".gallery-lightbox-next").addEventListener("click", () => show(active + 1));
+  viewer.addEventListener("click", (event) => { if (event.target === viewer) close(); });
+  document.addEventListener("keydown", (event) => { if (viewer.hidden) return; if (event.key === "Escape") close(); if (event.key === "ArrowLeft") show(active - 1); if (event.key === "ArrowRight") show(active + 1); });
+}
+
