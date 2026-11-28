@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101214">
+  <title>Panel barbera — Barber Zagrodowy</title>
+  <link rel="stylesheet" href="panel.css?v=7">
+  <script src="panel.js?v=6" defer></script>
+</head>
+<body>
+  <div class="app-frame">
+    <aside class="sidebar">
+      <a class="brand" href="#pulpit" aria-label="Barber Zagrodowy — panel">
+        <span class="brand-mark">BZ</span>
+        <span><strong>Barber Zagrodowy</strong><small>Panel barbera</small></span>
+      </a>
+      <nav class="main-nav" aria-label="Nawigacja panelu">
+        <button class="nav-link active" data-page="dashboard" aria-label="Aktualizacje"><span class="nav-symbol">▤</span><span class="nav-full">Aktualizacje</span><span class="nav-short">Aktual.</span></button>
+        <button class="nav-link" data-page="today" aria-label="Dzisiaj"><span class="nav-symbol">◷</span><span class="nav-full">Dzisiaj</span><span class="nav-short">Dzisiaj</span></button>
+        <button class="nav-link" data-page="calendar" aria-label="Kalendarz"><span class="nav-symbol">▣</span><span class="nav-full">Kalendarz</span><span class="nav-short">Kalendarz</span></button>
+        <button class="nav-link" data-page="services" aria-label="Usługi i ceny"><span class="nav-symbol">✂</span><span class="nav-full">Usługi i ceny</span><span class="nav-short">Usługi</span></button>
+        <button class="nav-link" data-page="hours" aria-label="Godziny i dni wolne"><span class="nav-symbol">◷</span><span class="nav-full">Godziny i dni wolne</span><span class="nav-short">Godziny</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <span class="local-indicator"></span>
+        <span><strong>Wersja lokalna</strong><small>Dane zapisują się na tym urządzeniu</small></span>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div>
+          <p class="breadcrumbs">BARBER ZAGRODOWY <span>/</span> <span id="crumb-current">PULPIT</span></p>
+          <h1 id="page-title">Aktualizacje</h1>
+        </div>
+        <div class="topbar-actions">
+          <span class="today-label" id="today-label"></span>
+          <button class="avatar-button" type="button" aria-label="Profil barbera">BZ</button>
+        </div>
+      </header>
+
+      <div class="sample-notice"><span class="notice-dot"></span> LOKALNY PODGLĄD · przykładowe dane</div>
+
+      <section class="page active" id="page-dashboard" data-title="Aktualizacje">
+          <section class="panel activity-panel updates-only">
+            <div class="panel-heading">
+              <div><p class="eyebrow">OSTATNIE ZMIANY</p><h2>Aktualizacje</h2></div>
+              <button class="text-button" data-open-calendar>Otwórz kalendarz <span>→</span></button>
+            </div>
+            <div class="activity-list" id="activity-list"></div>
+          </section>
+      </section>
+
+      <section class="page" id="page-today" data-title="Dzisiaj">
+        <section class="today-page-panel">
+          <div class="today-page-heading"><h2 id="today-heading"></h2></div>
+          <div class="today-lessons" id="today-lessons"></div>
+        </section>
+      </section>
+
+      <section class="page" id="page-calendar" data-title="Kalendarz">
+        <div class="calendar-toolbar panel">
+          <button class="month-back" id="month-back" type="button" hidden aria-label="Wróć do widoku miesiąca"><span aria-hidden="true">‹</span><span id="month-back-label"></span></button>
+          <div class="month-select">
+            <button class="icon-button" id="month-prev" aria-label="Poprzedni miesiąc">‹</button>
+            <div><h2 id="month-label"></h2></div>
+            <button class="icon-button" id="month-next" aria-label="Następny miesiąc">›</button>
+          </div>
+        </div>
+
+        <div class="calendar-layout">
+          <section class="panel month-panel">
+            <div class="month-grid-head"><span>Pn</span><span>Wt</span><span>Śr</span><span>Cz</span><span>Pt</span><span>So</span><span>Nd</span></div>
+            <div class="month-grid" id="month-grid"></div>
+          </section>
+
+          <section class="panel agenda-panel" hidden>
+            <div class="agenda-header">
+              <div><p class="eyebrow">PLAN TYGODNIA</p><h2 id="selected-date-label"></h2></div>
+              <div class="week-controls"><button class="icon-button small-button" id="week-prev" aria-label="Poprzedni tydzień">‹</button><button class="icon-button small-button" id="week-next" aria-label="Następny tydzień">›</button></div>
+            </div>
+            <div class="week-strip" id="week-strip"></div>
+            <div class="agenda-summary"><span id="agenda-count">0 wydarzeń</span></div>
+            <div class="day-events" id="day-events"></div>
+          </section>
+        </div>
+        <button class="fab" id="add-event" type="button"><span>＋</span><span>Dodaj wydarzenie</span></button>
+      </section>
+
+      <section class="page" id="page-services" data-title="Usługi i ceny">
+        <div class="page-intro"><div><p class="eyebrow">OFERTA SALONU</p><h2>Usługi i ceny</h2><p>Zmieniaj nazwy, ceny i czasy usług. Zmiany są zapisywane lokalnie.</p></div><button class="primary-button" id="add-service">＋ Dodaj usługę</button></div>
+        <div class="panel table-panel"><div class="service-table-head"><span>Usługa</span><span>Cena</span><span>Czas</span><span>Status</span><span></span></div><div id="service-list" class="service-list"></div></div>
+      </section>
+
+      <section class="page" id="page-hours" data-title="Godziny i dni wolne">
+        <div class="page-intro"><div><p class="eyebrow">DOSTĘPNOŚĆ SALONU</p><h2>Godziny i dni wolne</h2><p>Ustaw typowy tydzień pracy i dodaj jednorazowe dni zamknięcia.</p></div><button class="primary-button" id="add-day-off">＋ Dodaj dzień wolny</button></div>
+        <section class="panel hours-panel"><div class="panel-heading"><div><p class="eyebrow">TYGODNIOWY PLAN</p><h2>Godziny otwarcia</h2></div><button class="text-button" id="save-hours">Zapisz zmiany</button></div><div id="hours-list" class="hours-list"></div></section>
+        <section class="panel days-off-panel"><div class="panel-heading"><div><p class="eyebrow">WYJĄTKI</p><h2>Dni wolne</h2></div></div><div id="days-off-list" class="days-off-list"></div></section>
+      </section>
+
+    </main>
+  </div>
+
+  <dialog class="modal" id="event-modal" aria-labelledby="event-modal-title">
+    <form method="dialog" class="modal-close-form"><button class="modal-close" aria-label="Zamknij">×</button></form>
+    <p class="eyebrow">KALENDARZ</p><h2 id="event-modal-title">Dodaj wydarzenie</h2>
+    <form id="event-form" class="modal-form">
+      <label class="field-label">Rodzaj wpisu<select id="event-type"><option value="visit">Wizyta</option><option value="other">Inne wydarzenie</option></select></label>
+      <div id="visit-fields"><label class="field-label">Imię i nazwisko<input id="event-name" maxlength="90" placeholder="np. Jan Kowalski" required></label><label class="field-label">Usługa<select id="event-service"></select></label></div>
+      <div id="other-fields" hidden><label class="field-label">Tytuł wydarzenia<input id="event-title" maxlength="90" placeholder="np. Dzień wolny"></label></div>
+      <label class="field-label">Data<input id="event-date" type="date" required></label>
+      <div class="time-fields"><div><span class="field-caption">Od</span><div class="time-wheel" data-wheel="event-start"></div><input id="event-start" type="hidden"></div><div class="time-separator">—</div><div><span class="field-caption">Do</span><div class="time-wheel" data-wheel="event-end"></div><input id="event-end" type="hidden"></div></div>
+      <p class="form-error" id="event-error" role="alert"></p>
+      <button class="primary-button full-button" type="submit">Dodaj do kalendarza</button>
+    </form>
+  </dialog>
+
+  <dialog class="modal detail-modal" id="detail-modal" aria-labelledby="detail-title">
+    <form method="dialog" class="modal-close-form"><button class="modal-close" aria-label="Zamknij">×</button></form>
+    <p class="eyebrow" id="detail-type-label">SZCZEGÓŁY</p><h2 id="detail-title"></h2><div id="detail-body" class="detail-body"></div>
+    <div class="detail-actions" id="detail-actions"></div>
+    <form id="reschedule-form" class="reschedule-form" hidden>
+      <label class="field-label">Nowa data<input id="reschedule-date" type="date" required></label>
+      <div class="time-fields"><div><span class="field-caption">Od</span><div class="time-wheel" data-wheel="reschedule-start"></div><input id="reschedule-start" type="hidden"></div><div class="time-separator">—</div><div><span class="field-caption">Do</span><div class="time-wheel" data-wheel="reschedule-end"></div><input id="reschedule-end" type="hidden"></div></div>
+      <p class="form-error" id="reschedule-error" role="alert"></p><button class="primary-button full-button" type="submit">Zapisz nowy termin</button>
+    </form>
+  </dialog>
+
+  <dialog class="modal" id="dayoff-modal" aria-labelledby="dayoff-title">
+    <form method="dialog" class="modal-close-form"><button class="modal-close" aria-label="Zamknij">×</button></form>
+    <p class="eyebrow">DOSTĘPNOŚĆ</p><h2 id="dayoff-title">Dodaj dzień wolny</h2>
+    <form id="dayoff-form" class="modal-form"><label class="field-label">Data<input type="date" id="dayoff-date" required></label><label class="field-label">Opis<input id="dayoff-note" maxlength="80" placeholder="np. Urlop"></label><button class="primary-button full-button" type="submit">Zapisz dzień wolny</button></form>
+  </dialog>
+
+  <dialog class="modal" id="service-modal" aria-labelledby="service-modal-title">
+    <form method="dialog" class="modal-close-form"><button class="modal-close" aria-label="Zamknij">×</button></form>
+    <p class="eyebrow">OFERTA</p><h2 id="service-modal-title">Dodaj usługę</h2>
+    <form id="service-form" class="modal-form"><label class="field-label">Nazwa<input id="new-service-name" required maxlength="80"></label><div class="inline-fields"><label class="field-label">Cena (zł)<input id="new-service-price" type="number" min="0" step="1" required></label><label class="field-label">Czas (min)<input id="new-service-duration" type="number" min="0" step="5" required></label></div><button class="primary-button full-button" type="submit">Dodaj usługę</button></form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
